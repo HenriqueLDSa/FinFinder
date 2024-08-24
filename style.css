@@ -1,0 +1,105 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(270deg, #07ffcd, #fc01e7);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+}
+
+
+@keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 5% 50%;
+    }
+  }
+
+
+.wrapper {
+    width: 420px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    color: #fff;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0 .2);
+    border-radius: 10px;
+    padding: 30px 40px;
+}
+
+.head-text {
+    font-size: 36px;
+    text-align: center;
+}
+
+.input-box {
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    margin: 30px 0;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none; 
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 40px;
+    font-size: 16;
+    color: #fff;
+    border-radius: 40px;
+    padding: 20px 45px 20px 20px;
+}
+
+.input-box input::placeholder {
+    color: #fff;
+}
+
+.input-box i {
+    font-size: 30px; 
+    position: absolute;
+    transform: translate(-160%, 30%);
+}
+
+.submit-button button {
+    width: 100%;
+    height: 45px;
+    background: #fff;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, .2);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+}
+
+.page-link {
+    font-size: 15px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.page-link p a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
