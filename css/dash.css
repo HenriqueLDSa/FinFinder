@@ -1,0 +1,152 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(270deg, #0731cd, #0ae7ef, #fcdb7f, #84b5a7);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+}
+
+
+@keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 5% 50%;
+    }
+  }
+
+
+.wrapper {
+    display: grid; /* */ 
+    grid-template-columns: 240px 1fr; /* 240px wide sidebar, rest for main content */
+    width: 95%;
+    text-align: center;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    height: 800px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    color: #fff;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    border-radius: 10px;
+    overflow-y: auto; 
+}
+
+
+/* sidebar */
+.sidebar {
+    background-color: rgba(0, 0, 0, 0.3); /* Transparent black for sidebar */
+    padding: 20px;
+    border-right: 2px solid rgba(255, 255, 255, .2);
+    height: 100%; /* Full height of the wrapper */
+}
+
+.menu-item {
+    display: block;
+    width: 100%; /* Make each button take up the full width of the sidebar */
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent button background */
+    color: #fff; /* Button text color */
+    text-decoration: none; /* Remove underline from links */
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: left; /* Align text to the left */
+}
+
+.menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Slightly darker on hover */
+    color: #333;
+}
+
+/* main content */
+.main-content {
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent background */
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    color: white; /* Dark text color for contrast */
+    position: relative;
+    z-index: 2;
+}
+
+/* header grid */
+.header-grid {
+    display: grid;
+    grid-template-columns: 1fr auto; /* Title takes up remaining space, button is auto-sized */
+    align-items: center;
+    margin-bottom: 20px; /* Space below the grid */
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2); /* Border line below the header */
+    padding-bottom: 20px; /* Add padding to make space for the border */
+}
+
+.main-title {
+    font-size: 24px;
+    color: white; /* Darker text color */
+    margin-right: auto;
+}
+
+/* adjust icon next to title */
+.main-title i {
+    font-size: 14px;
+    margin-left: 5px;
+}
+
+.new-user-button {
+    padding: 10px 20px;
+    background-color: #007BFF; /* Blue background */
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    flex-shrink: 0; /* Prevent the button from shrinking */
+}
+
+.search-grid {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr; /* Single column grid for the search bar */
+ 
+}
+
+.search-container {
+    position: relative;
+    width: 30%;
+    margin-right: auto;
+}
+
+.search-bar {
+    width: 100%; /* Make the search bar take up the full width of its container */
+    padding: 10px 10px 10px 40px; /* Padding on the left to make space for the icon */
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    outline: none;
+    font-size: 14px;
+}
+
+.search-container i {
+    position: absolute;
+    left: 12px; /* Position the icon inside the input */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888; /* Icon color */
+    font-size: 18px; /* Icon size */
+}
