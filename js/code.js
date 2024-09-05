@@ -1,4 +1,4 @@
-const urlBase = 'http://ec2-35-170-187-116.compute-1.amazonaws.com/';
+const urlBase = 'http://142.93.205.171/LAMPAPI';
 const extension = 'php';
 
 let userId = 0;
