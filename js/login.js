@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // Base URL and extension for API
-const urlBase = 'http://team27poosd.site//LAMPAPI'; //REPLACE IP
+const urlBase = 'http://team27poosd.site/LAMPAPI'; //REPLACE IP
 const extension = 'php';
 
 let userId = 0;
