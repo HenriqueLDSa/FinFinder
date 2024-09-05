@@ -95,5 +95,5 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // Base URL and extension for API
-const urlBase = 'http://142.93.205.171/LAMPAPI'; //REPLACE IP
+const urlBase = 'http://team27poosd.site/LAMPAPI'; //REPLACE IP
 const extension = 'php';
