@@ -12,7 +12,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(270deg, #0731cd, #0ae7ef, #fcdb7f, #84b5a7);
+    background: linear-gradient(270deg, #0a3d91, #1e5bbf, #3778d9, #5b97f1);
     background-size: 400% 400%;
     animation: gradientAnimation 15s ease infinite;
 }

@@ -4,10 +4,11 @@
         <title> Contacts </title>
         <link rel="stylesheet" href="css/dash.css">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <script src="js/dashboard.js"></script>
     </head>
-        <body>
-            <div class="wrapper">
-                
+    <body>
+        <div class="wrapper">
+            <div class="container">
                 <aside class="sidebar">
                     <!-- title: dashboard -->
                     <h2 class="sidebar-title">Dashboard</h2>
@@ -21,7 +22,7 @@
                 
                 <main class="main-content">
                     <div class="header-grid">
-                        <h2 class="main-title">Contacts <i class='bx bxs-down-arrow'></i></h2>
+                        <h2 class="main-title">Contacts </h2>
                         <button class="new-user-button">New Contact</button>
                     </div>
 
@@ -31,8 +32,36 @@
                             <input type="text" class="search-bar" placeholder="Search...">
                         </div>
                     </div>
+
+                    <div class="contact-item-container">
+                        <div class="contact-item">
+                            <span id="contact-name">Henrique</span>
+                            <span id="contact-number">000-000-0000</span>
+                            <span id="contact-email">henrique@test.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <span id="contact-name">Noah</span>
+                            <span id="contact-number">000-000-0000</span>
+                            <span id="contact-email">noah@test.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <span id="contact-name">Katelyn</span>
+                            <span id="contact-number">000-000-0000</span>
+                            <span id="contact-email">katelyn@test.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <span id="contact-name">Randy</span>
+                            <span id="contact-number">000-000-0000</span>
+                            <span id="contact-email">randy@test.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <span id="contact-name">Santos</span>
+                            <span id="contact-number">000-000-0000</span>
+                            <span id="contact-email">santos@test.com</span>
+                        </div>
+                    </div>
                 </main>
             </div>
-            <script src="js/dashboard.js"></script>
-        </body>
+        </div>
+    </body>
 </html>

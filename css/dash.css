@@ -1,105 +1,114 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
 body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    background: linear-gradient(270deg, #0731cd, #0ae7ef, #fcdb7f, #84b5a7);
+    height: 100vh;
+    background: linear-gradient(270deg, #0a3d91, #1e5bbf, #3778d9, #5b97f1);
     background-size: 400% 400%;
-    animation: gradientAnimation 15s ease infinite;
+    animation: gradientAnimation 10s ease infinite;
 }
 
 
 @keyframes gradientAnimation {
     0% {
-      background-position: 0% 50%;
+        background-position: 0% 50%;
     }
     50% {
-      background-position: 100% 50%;
+        background-position: 100% 50%;
     }
     100% {
-      background-position: 5% 50%;
+        background-position: 5% 50%;
     }
-  }
+}
 
 
 .wrapper {
-    display: grid; /* */ 
-    grid-template-columns: 240px 1fr; /* 240px wide sidebar, rest for main content */
-    width: 95%;
+    height: 100vh; 
+    width: 100%;
+    padding: 2% 2% 2% 2%;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    width: 100%;
     text-align: center;
-    margin-top: 2%;
-    margin-bottom: 1%;
-    height: 800px;
+    height: 100%; 
     background: transparent;
-    border: 2px solid rgba(255, 255, 255, .2);
+    border: 2px solid rgba(255, 255, 255, 0.2);
     color: #fff;
     backdrop-filter: blur(20px);
     box-shadow: 0 0 10px rgba(0, 0, 0, .2);
     border-radius: 10px;
-    overflow-y: auto; 
 }
 
 
 /* sidebar */
 .sidebar {
-    background-color: rgba(0, 0, 0, 0.3); /* Transparent black for sidebar */
+    background-color: rgba(0, 0, 0, 0.3); 
     padding: 20px;
-    border-right: 2px solid rgba(255, 255, 255, .2);
-    height: 100%; /* Full height of the wrapper */
+    height: 100%; 
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px; 
 }
 
 .menu-item {
     display: block;
-    width: 100%; /* Make each button take up the full width of the sidebar */
+    width: 100%; 
     padding: 15px 20px;
     margin-bottom: 20px;
     margin-top: 30px;
-    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent button background */
-    color: #fff; /* Button text color */
-    text-decoration: none; /* Remove underline from links */
+    background-color: rgba(255, 255, 255, 0.1); 
+    color: #fff; 
+    text-decoration: none;
     border-radius: 5px;
     font-size: 16px;
-    text-align: left; /* Align text to the left */
+    text-align: left; 
 }
 
 .menu-item:hover {
-    background-color: rgba(255, 255, 255, 0.2); /* Slightly darker on hover */
+    background-color: rgba(255, 255, 255, 0.2); 
     color: #333;
 }
 
 /* main content */
 .main-content {
+    display: flex;
+    flex-direction: column;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent background */
+    background-color: rgba(150, 150, 150, 0.1); 
     backdrop-filter: blur(20px);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    color: white; /* Dark text color for contrast */
+    color: white;
     position: relative;
     z-index: 2;
+    overflow: hidden; 
+    border-top-right-radius: 10px;   
+    border-bottom-right-radius: 10px;
 }
 
 /* header grid */
 .header-grid {
     display: grid;
-    grid-template-columns: 1fr auto; /* Title takes up remaining space, button is auto-sized */
+    grid-template-columns: 1fr auto; 
     align-items: center;
-    margin-bottom: 20px; /* Space below the grid */
-    border-bottom: 2px solid rgba(255, 255, 255, 0.2); /* Border line below the header */
-    padding-bottom: 20px; /* Add padding to make space for the border */
+    margin-bottom: 20px; 
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2); 
+    padding-bottom: 20px; 
 }
 
 .main-title {
     font-size: 24px;
-    color: white; /* Darker text color */
+    color: white; 
     margin-right: auto;
 }
 
@@ -111,20 +120,19 @@ body {
 
 .new-user-button {
     padding: 10px 20px;
-    background-color: #007BFF; /* Blue background */
+    background-color: #007BFF; 
     color: white;
     border: none;
     border-radius: 50px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    flex-shrink: 0; /* Prevent the button from shrinking */
+    flex-shrink: 0; 
 }
 
 .search-grid {
     margin-top: 10px;
     display: grid;
-    grid-template-columns: 1fr; /* Single column grid for the search bar */
- 
+    grid-template-columns: 1fr;
 }
 
 .search-container {
@@ -133,20 +141,60 @@ body {
     margin-right: auto;
 }
 
+.search-container i {
+    position: absolute;
+    left: 12px; 
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    font-size: 18px;
+}
+
 .search-bar {
-    width: 100%; /* Make the search bar take up the full width of its container */
-    padding: 10px 10px 10px 40px; /* Padding on the left to make space for the icon */
+    width: 100%; 
+    padding: 10px 10px 10px 40px;
     border: 1px solid #ccc;
     border-radius: 50px;
     outline: none;
     font-size: 14px;
 }
 
-.search-container i {
-    position: absolute;
-    left: 12px; /* Position the icon inside the input */
-    top: 50%;
-    transform: translateY(-50%);
-    color: #888; /* Icon color */
-    font-size: 18px; /* Icon size */
+.contact-item-container {
+    flex-grow: 1; 
+    overflow-y: auto;
+    margin-top: 3%;
+    background: transparent;
+    width: 100%;
+}
+
+.contact-item {
+    background-color: rgba(255, 255, 255, 0.5); 
+    background: transparent;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2); 
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    font-size: 17px;
+    display: flex;
+    overflow-x: scroll;
+}
+
+#contact-name {
+    justify-content: start;
+    flex: 1;
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+#contact-number {
+    justify-content: center;    
+    flex: 1;
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+#contact-email {
+    justify-content: end;
+    flex: 1;
+    overflow-x: scroll;
+    white-space: nowrap;
 }
