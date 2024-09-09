@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", readCookie());
+document.addEventListener("DOMContentLoaded", readCookie);
 
 const urlBase = 'http://team27poosd.site/LAMPAPI';
 const extension = 'php';
@@ -91,7 +91,7 @@ function addContact(name, number, email){
     contactContainer.appendChild(newContactElement);
 }
 
-logoutBtn.addEventListener('click', doLogout());
+logoutBtn.addEventListener('click', doLogout);
 
 newContactBtn.addEventListener('click', function() {
     nameModal.style.display = 'flex';
