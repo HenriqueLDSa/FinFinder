@@ -127,3 +127,75 @@ input[type="password"]::-ms-clear {
     text-decoration: none;
     font-weight: 600;
 }
+
+/* wave styling */
+
+.wave-container {
+    position: fixed;
+    width: 100%; 
+    height: 50vh; 
+    bottom: 0;       
+    overflow: hidden; 
+    z-index: -1;      
+}
+
+.wave-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 200%;
+    height: 50vh;
+    animation: wave-scroll 20s linear infinite;
+    z-index: -1;
+    opacity: 0.7;
+}
+
+@keyframes wave-scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* 3 bubbles styling */
+
+.bubbles-container {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;    
+    overflow: hidden;  
+    z-index: -1;      
+}
+
+.bubbles-image {
+    position: absolute;
+    left: 10%;
+    bottom: 0;
+    width: 12%;
+    height: 12%;
+    animation: move-up 15s linear infinite;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+@keyframes move-up {
+    0% {
+        bottom: 0;
+        transform: translateX(-20%);
+    }
+    30% {
+        bottom: 30%;
+        transform: translateX(20%);
+    }
+    65% {
+        bottom: 70%;
+        transform: translateX(-20%);
+    }
+    100% {
+        bottom: 100%;
+        transform: translateX(20%);
+    }
+}
