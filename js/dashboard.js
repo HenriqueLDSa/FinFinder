@@ -1,22 +1,4 @@
-function getCookie(name) {
-    let nameEQ = name + "=";
-    let ca = document.cookie.split(';');
-    for(let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-    }
-    return null;
-}
-
-function checkLogin() {
-    let userId = getCookie("userId");
-    if (!userId) {
-        window.location.href = "index.html";
-    }
-}
-
-document.addEventListener("DOMContentLoaded", checkLogin);
+document.addEventListener("DOMContentLoaded", readCookie());
 
 const urlBase = 'http://team27poosd.site/LAMPAPI';
 const extension = 'php';
@@ -35,12 +17,44 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
+function readCookie() {
+    userId = -1;
+    let data = document.cookie;
+    let splits = data.split(",");
+
+    for (var i = 0; i < splits.length; i++) {
+
+        let thisOne = splits[i].trim();
+        let tokens = thisOne.split("=");
+
+        if (tokens[0] == "firstName") {
+            firstName = tokens[1];
+        }
+
+        else if (tokens[0] == "lastName") {
+            lastName = tokens[1];
+        }
+
+        else if (tokens[0] == "userId") {
+            userId = parseInt(tokens[1].trim());
+        }
+    }
+
+    if (userId < 0) {
+        window.location.href = "index.html";
+    }
+
+    else {
+        document.getElementById("userName").innerHTML = "Welcome, " + firstName + " " + lastName + "!";
+    }
+}
+
 function doLogout()
 {
-	// userId = 0;
-	// firstName = "";
-	// lastName = "";
-	// document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+	userId = 0;
+	firstName = "";
+	lastName = "";
+	document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
 	window.location.href = "index.html";
 }
 

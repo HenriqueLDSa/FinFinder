@@ -57,13 +57,8 @@ function saveCookie() {
     let minutes = 20;
     let date = new Date();
     date.setTime(date.getTime() + (minutes * 60 * 1000));
-    let expires = "; expires=" + date.toUTCString();
-
-    document.cookie = "firstName=" + firstName + expires + "; path=/";
-    document.cookie = "lastName=" + lastName + expires + "; path=/";
-    document.cookie = "userId=" + userId + expires + "; path=/";
+    document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
 }
-
 
 // Event Listeners when content on HTML is loaded/accessible
 document.addEventListener("DOMContentLoaded", function() {
