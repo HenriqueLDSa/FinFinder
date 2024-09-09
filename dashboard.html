@@ -4,7 +4,7 @@
         <title> Contacts </title>
         <link rel="stylesheet" href="css/dash.css">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-        <script src="js/dashboard.js"></script>
+        <link href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" rel="stylesheet">
     </head>
     <body>
         <div class="wrapper">
@@ -15,14 +15,14 @@
                     <!-- sidebar content -->
                     <!-- Logout, About us-->
                     <nav class="sidebar-menu">
-                        <a href="#about-us" class="menu-item">About Us</a>
-                        <a href="#logout" class="menu-item">Logout</a>
+                        <button id="about-us-btn" class="menu-item">About Us</button>
+                        <button id="logout-btn" class="menu-item">Logout</button>
                     </nav>
                 </aside>
                 
                 <main class="main-content">
                     <div class="header-grid">
-                        <h2 class="main-title">Contacts </h2>
+                        <h2 class="main-title">Contacts</h2>
                         <button class="new-user-button">New Contact</button>
                     </div>
 
@@ -38,30 +38,25 @@
                             <span id="contact-name">Henrique</span>
                             <span id="contact-number">000-000-0000</span>
                             <span id="contact-email">henrique@test.com</span>
-                        </div>
-                        <div class="contact-item">
-                            <span id="contact-name">Noah</span>
-                            <span id="contact-number">000-000-0000</span>
-                            <span id="contact-email">noah@test.com</span>
-                        </div>
-                        <div class="contact-item">
-                            <span id="contact-name">Katelyn</span>
-                            <span id="contact-number">000-000-0000</span>
-                            <span id="contact-email">katelyn@test.com</span>
-                        </div>
-                        <div class="contact-item">
-                            <span id="contact-name">Randy</span>
-                            <span id="contact-number">000-000-0000</span>
-                            <span id="contact-email">randy@test.com</span>
-                        </div>
-                        <div class="contact-item">
-                            <span id="contact-name">Santos</span>
-                            <span id="contact-number">000-000-0000</span>
-                            <span id="contact-email">santos@test.com</span>
+                            <div class="contact-mods">
+                                <i class="far fa-edit"></i><i class="fa fa-trash-alt"></i>
+                            </div>
                         </div>
                     </div>
                 </main>
             </div>
+
+            <div id="contact-data-modal" class="modal">
+                <div class="modal-content">
+                    <p>Please enter your first name:</p>
+                    <input type="text" id="firstNameInput" placeholder="First Name">
+                    <input type="text" id="numberInput" placeholder="Number">
+                    <input type="text" id="emailInput" placeholder="Email">
+                    <button id="submitDataBtn">Save</button>
+                </div>
+            </div>
         </div>
+
+        <script src="js/dashboard.js"></script>
     </body>
 </html>
