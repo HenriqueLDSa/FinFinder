@@ -5,6 +5,7 @@ const extension = 'php';
 
 const aboutUsBtn = document.getElementById("about-us-btn");
 const logoutBtn = document.getElementById("logout-btn");
+const contactBtn = document.getElementById("contacts-btn");
 
 const newContactBtn = document.querySelector(".new-user-button");
 const nameModal = document.getElementById('contact-data-modal');
@@ -132,6 +133,10 @@ logoutBtn.addEventListener('click', doLogout);
 
 aboutUsBtn.addEventListener('click', () => {
     window.location.href = "about.html";
+});
+
+contactBtn.addEventListener('click', () => {
+    window.location.href = "dashboard.html";
 });
 
 newContactBtn.addEventListener('click', function() {
