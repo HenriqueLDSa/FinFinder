@@ -20,8 +20,6 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
-let usderContacts = [];
-
 function readCookie() {
     userId = -1;
     let data = document.cookie;
