@@ -172,7 +172,7 @@ input[type="password"]::-ms-clear {
 
 .bubbles-image {
     position: absolute;
-    left: 10%;
+    left: 5%;
     bottom: 0;
     width: 12%;
     height: 12%;
@@ -181,11 +181,51 @@ input[type="password"]::-ms-clear {
     opacity: 0.3;
 }
 
+.one-bubble-image {
+    position: absolute;
+    left: 18%;
+    bottom: 0;
+    width: 12%;
+    height: 12%;
+    animation: move-up-fast 10s linear infinite;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+.bubbles-image-2 {
+    position: absolute;
+    left: 44%;
+    bottom: 0;
+    width: 12%;
+    height: 12%;
+    animation: move-up 12s linear infinite;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+.one-bubble-image-2 {
+    position: absolute;
+    left: 70%;
+    bottom: 0;
+    width: 12%;
+    height: 12%;
+    animation: move-up-fast 8s linear infinite;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+.bubbles-image-3 {
+    position: absolute;
+    left: 86%;
+    bottom: 0;
+    width: 12%;
+    height: 12%;
+    animation: move-up 10s linear infinite;
+    z-index: -1;
+    opacity: 0.3;
+}
+
 @keyframes move-up {
-    0% {
-        bottom: 0;
-        transform: translateX(-20%);
-    }
     30% {
         bottom: 30%;
         transform: translateX(20%);
@@ -199,3 +239,16 @@ input[type="password"]::-ms-clear {
         transform: translateX(20%);
     }
 }
+
+@keyframes move-up-fast {
+    50% {
+        bottom: 50%;
+        transform: translateX(-20%);
+    }
+    100% {
+        bottom: 100%;
+        transform: translateX(20%);
+    }
+
+}
+
