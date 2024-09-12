@@ -1,4 +1,5 @@
 <?php
+    Access-Control-Allow-Origin: *
 
 	$inData = getRequestInfo();
 	

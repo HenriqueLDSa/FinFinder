@@ -1,4 +1,6 @@
 <?php
+    Access-Control-Allow-Origin: *
+
     $inData = getRequestInfo();
 
     $id = $inData["id"];
