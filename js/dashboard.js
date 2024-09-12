@@ -9,7 +9,9 @@ const logoutBtn = document.getElementById("logout-btn");
 const newContactBtn = document.querySelector(".new-user-button");
 const nameModal = document.getElementById('contact-data-modal');
 const submitDataBtn = document.getElementById('submitDataBtn');
+const cancelBtn = document.getElementById('cancelBtn');
 const firstNameInput = document.getElementById('firstNameInput');
+const lastNameInput = document.getElementById('lastNameInput');
 const numberInput = document.getElementById('numberInput');
 const emailInput = document.getElementById('emailInput');
 
@@ -43,14 +45,9 @@ function readCookie() {
     if (userId < 0) {
         window.location.href = "index.html";
     }
-
-    else {
-        document.getElementById("userName").innerHTML = "Welcome, " + firstName + " " + lastName + "!";
-    }
 }
 
-function doLogout()
-{
+function doLogout() {
 	userId = 0;
 	firstName = "";
 	lastName = "";
@@ -58,13 +55,43 @@ function doLogout()
 	window.location.href = "index.html";
 }
 
-function addContact(name, number, email){
+function addContact(firstName, lastName, number, email){
+    let newContactObj = 
+    {
+        "firstName": firstName,
+        "lastName": lastName,
+        "email": email,
+        "phone": number,
+        "userID": userId
+    };
+
+    let jsonPayload = JSON.stringify(newContactObj);
+
+    let url = urlBase + "/addContact." + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try {
+        xhr.onreadystatechange = function()
+        {
+            if (this.readyState == 4 && this.status == 200)
+            {
+                alert("Contact added.");
+            }
+        };
+        xhr.send(jsonPayload);
+    }
+    catch (err) {
+        alert(err);
+    }
+
     const newContactElement = document.createElement("div");
     newContactElement.className = "contact-item";
-    
+
     const contactName = document.createElement("span");
     contactName.id = "contact-name";
-    contactName.textContent = name;
+    contactName.textContent = firstName + " " + lastName;
     newContactElement.appendChild(contactName);
 
     const contactNumber = document.createElement("span");
@@ -93,6 +120,10 @@ function addContact(name, number, email){
 
 logoutBtn.addEventListener('click', doLogout);
 
+aboutUsBtn.addEventListener('click', () => {
+    window.location.href = "about.html";
+});
+
 newContactBtn.addEventListener('click', function() {
     nameModal.style.display = 'flex';
     document.body.classList.add('modal-open');
@@ -100,11 +131,15 @@ newContactBtn.addEventListener('click', function() {
 
 submitDataBtn.addEventListener('click', function() {
     const firstName = firstNameInput.value;
+    const lastName = lastNameInput.value;
     const phoneNum = numberInput.value;
     const emailAdd = emailInput.value;
 
     if (!firstName) {
         alert('Please enter the first name.');
+    }
+    else if (!lastName) {
+        alert('Please enter the last name.');
     }
     else if (!phoneNum) {
         alert('Please enter the phone number.');
@@ -113,8 +148,18 @@ submitDataBtn.addEventListener('click', function() {
         alert('Please enter the email address.');
     }
     else {
-        addContact(firstName, phoneNum, emailAdd);
+        addContact(firstName, lastName, phoneNum, emailAdd);
         nameModal.style.display = 'none';
         document.body.classList.remove('modal-open');
     }
+});
+
+cancelBtn.addEventListener('click', () => {
+    firstNameInput.value = "";
+    lastNameInput.value = "";
+    numberInput.value = "";
+    emailInput.value = "";
+
+    nameModal.style.display = 'none';
+    document.body.classList.remove('modal-open');
 });
