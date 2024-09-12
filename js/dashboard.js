@@ -77,7 +77,9 @@ function addContact(firstName, lastName, number, email){
         {
             if (this.readyState == 4 && this.status == 200)
             {
-                alert("Contact added.");
+                let response = JSON.parse(this.responseText);
+                let message = response.info;
+                alert(message);
             }
         };
         xhr.send(jsonPayload);

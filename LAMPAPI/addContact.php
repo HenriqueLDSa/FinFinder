@@ -1,7 +1,8 @@
 <?php
     $inData = getRequestInfo();
 
-    $name = $inData["name"];
+    $firstName = $inData["firstName"];
+    $lastName = $inData["lastName"];
     $email = $inData["email"];
     $phone = $inData["phone"];
     $userID = $inData["userID"];
@@ -14,8 +15,8 @@
         returnWithError( $conn->connect_error );
     } else {
         // Prepare and execute the SQL query
-        $stmt = $conn->prepare("INSERT INTO Contacts (Name, Phone, Email, UserID) VALUES(?,?,?,?)");
-        $stmt->bind_param("sssi", $name, $phone, $email, $userID);
+        $stmt = $conn->prepare("INSERT INTO Contacts (FirstName, LastName, Phone, Email, UserID) VALUES(?,?,?,?,?)");
+        $stmt->bind_param("ssssi", $firstName, $lastName, $phone, $email, $userID);
         
         if ($stmt->execute()) {
             // Success handling, e.g., return success message
