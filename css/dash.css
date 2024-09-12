@@ -190,6 +190,7 @@ body {
     white-space: nowrap;
     overflow: hidden; 
     text-overflow: ellipsis;
+    margin-inline: 2.5px;
 }
 
 #contact-number {
@@ -199,6 +200,7 @@ body {
     white-space: nowrap;
     overflow: hidden; 
     text-overflow: ellipsis; 
+    margin-inline: 2.5px;
 }
 
 #contact-email {
@@ -207,12 +209,14 @@ body {
     white-space: nowrap;
     overflow: hidden; 
     text-overflow: ellipsis;
+    margin-inline: 2.5px;
 }
 
 .contact-item .contact-mods {
     align-content: center;
     flex: 0.2;
     white-space: nowrap;
+    margin-inline: 2.5px;
 }
 
 #editIcon {
