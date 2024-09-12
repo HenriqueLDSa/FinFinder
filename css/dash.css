@@ -215,6 +215,14 @@ body {
     white-space: nowrap;
 }
 
+#editIcon {
+    margin-right: 2.5px;
+}
+
+#deleteIcon {
+    margin-left: 2.5px;
+}
+
 .modal {
     display: none; 
     position: fixed; 
