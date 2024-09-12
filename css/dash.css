@@ -187,8 +187,9 @@ body {
 #contact-name {
     justify-content: start;
     flex: 1;
-    overflow-x: auto;
     white-space: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis;
 }
 
 #contact-number {
@@ -196,23 +197,16 @@ body {
     flex: 1;
     overflow-x: auto;
     white-space: nowrap;
-    scrollbar-color: #d3d3d370 transparent;
-}
-
-/* WebKit browsers (Chrome, Safari) */
-#contact-number::-webkit-scrollbar {
-    width: 3px;
-}
-
-#contact-number::-webkit-scrollbar-thumb {
-    background-color: #d3d3d370;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
 }
 
 #contact-email {
     justify-content: end;
     flex: 1;
-    overflow-x: auto;
     white-space: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis;
 }
 
 .contact-item .contact-mods {
