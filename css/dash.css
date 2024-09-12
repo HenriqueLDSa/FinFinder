@@ -180,27 +180,28 @@ body {
     padding-bottom: 5px;
     font-size: 17px;
     display: flex;
-    overflow-x: scroll;
+    overflow-x: hidden;
+    white-space: nowrap;
 }
 
 #contact-name {
     justify-content: start;
     flex: 1;
-    overflow-x: scroll;
+    overflow-x: auto;
     white-space: nowrap;
 }
 
 #contact-number {
     justify-content: center;    
     flex: 1;
-    overflow-x: scroll;
+    overflow-x: auto;
     white-space: nowrap;
 }
 
 #contact-email {
     justify-content: end;
     flex: 1;
-    overflow-x: scroll;
+    overflow-x: auto;
     white-space: nowrap;
 }
 
@@ -235,3 +236,19 @@ body.modal-open {
     overflow: hidden;
 }
 
+/* For Chrome, Safari, and Edge */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(211, 211, 211, 0.5); /* Make the thumb transparent */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(211, 211, 211, 0.9); /* Change thumb color slightly on hover */
+}
