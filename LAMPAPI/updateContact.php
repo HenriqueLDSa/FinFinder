@@ -2,7 +2,8 @@
     $inData = getRequestInfo();
 
     $id = $inData["id"];    
-    $name = $inData["name"];
+    $firstName = $inData["firstName"];
+    $lastName = $inData["lastName"];
     $email = $inData["email"];
     $phone = $inData["phone"];
 
@@ -14,8 +15,8 @@
         returnWithError($conn->connect_error);
     } else {
         // Prepare and execute the SQL query
-        $stmt = $conn->prepare("UPDATE Contacts SET Name=?, Phone=?, Email=? WHERE ID=?");
-        $stmt->bind_param("sssi", $name, $phone, $email, $id);
+        $stmt = $conn->prepare("UPDATE Contacts SET FirstName=?, LastName=?, Phone=?, Email=? WHERE ID=?");
+        $stmt->bind_param("ssssi", $firstName, $lastName, $phone, $email, $id);
         
         if ($stmt->execute()) {
             // Check if any rows were actually updated
