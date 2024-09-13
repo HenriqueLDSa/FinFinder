@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", readCookie);
+window.onload = loadContacts();
 
 const urlBase = 'http://team27poosd.site/LAMPAPI';
 const extension = 'php';
@@ -19,6 +20,8 @@ const emailInput = document.getElementById('emailInput');
 let userId = 0;
 let firstName = "";
 let lastName = "";
+
+let userContacts = [];
 
 function readCookie() {
     userId = -1;
@@ -56,6 +59,35 @@ function doLogout() {
 	window.location.href = "index.html";
 }
 
+async function loadContacts() {
+    let payloadObj = 
+    {
+        "userID": userId
+    };
+
+    let jsonPayload = JSON.stringify(payloadObj);
+    let url = urlBase + "/getContacts." + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try {
+        xhr.onreadystatechange = function()
+        {
+            if (this.readyState == 4 && this.status == 200)
+            {
+                userContacts = JSON.parse(this.responseText);
+
+                userContacts.forEach(element => {
+                    addElementToTable(element.firstName, element.lastName, element.number, element.email);
+                });
+            }
+        }
+    } catch (err) {
+        console.log("Error while fetching contacts: " + err);
+    }
+}
+
 function addContact(firstName, lastName, number, email) {
     let newContactObj = 
     {
@@ -88,7 +120,17 @@ function addContact(firstName, lastName, number, email) {
     catch (err) {
         alert(err);
     }
+}
 
+function editContact(firstName, lastName, number, email){
+
+}
+
+function deleteContact(){
+    
+}
+
+function addElementToTable(firstName, lastName, phone, email){
     const newContactElement = document.createElement("div");
     newContactElement.className = "contact-item";
 
@@ -119,14 +161,6 @@ function addContact(firstName, lastName, number, email) {
 
     const contactContainer = document.querySelector(".contact-item-container");
     contactContainer.appendChild(newContactElement);
-}
-
-function editContact(firstName, lastName, number, email){
-
-}
-
-function deleteContact(){
-    
 }
 
 logoutBtn.addEventListener('click', doLogout);

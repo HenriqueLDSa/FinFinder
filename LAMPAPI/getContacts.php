@@ -20,17 +20,23 @@
         returnWithError( $conn->connect_error );
     } else {
         // Prepare and execute the SQL query
-        $stmt = $conn->prepare("SELECT * FROM Contacts WHERE UserID=? LIMIT 1");
+        $stmt = $conn->prepare("SELECT * FROM Contacts WHERE UserID=?");
         $stmt->bind_param("i", $userID);
         
         if ($stmt->execute()) {
             $result = $stmt->get_result();
+            $contacts = array(); // Initialize an array to store all contacts
 
-            // Fetch only the first result as an associative array
-            if ($contact = $result->fetch_assoc()) {
-                returnWithInfo($contact);
+            // Fetch all results as an associative array and store in $contacts array
+            while ($contact = $result->fetch_assoc()) {
+                $contacts[] = $contact;
+            }
+
+            // Check if there are any contacts found
+            if (count($contacts) > 0) {
+                returnWithInfo($contacts); // Return the entire array of contacts
             } else {
-                returnWithError("No contacts found.");
+                returnWithError("No contacts found");
             }
         } else {
             // Error handling
