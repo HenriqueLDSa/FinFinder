@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", readCookie);
-window.onload = loadContacts();
+window.onload = loadContacts;
 
 //initialize global variables
 const urlBase = 'http://team27poosd.site/LAMPAPI';

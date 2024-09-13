@@ -34,8 +34,6 @@ function doRegister() {
         return;
     }
 
-    
-
     // Create the payload with the user details
     let tmp = {firstName: firstName, lastName: lastName, email: email, login: login, password: password};
     let jsonPayload = JSON.stringify(tmp);
