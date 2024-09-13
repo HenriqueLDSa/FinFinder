@@ -57,10 +57,7 @@ function readCookie() {
 }
 
 async function loadContacts() {
-    let payloadObj = 
-    {
-        "userID": userId
-    };
+    let payloadObj = {"userID": userId};
 
     let jsonPayload = JSON.stringify(payloadObj);
     let url = urlBase + "/getContacts." + extension;
@@ -177,8 +174,34 @@ function editContact(id, firstName, lastName, number, email){
     }
 }
 
-function deleteContact(){
-    
+function deleteContact(id){
+    let deleteContactObj = {"id": id};
+
+    let jsonPayload = JSON.stringify(deleteContactObj);
+    let url = urlBase + "/deleteContact." + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try {
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                let jsonObject = JSON.parse(xhr.responseText);
+
+                if (jsonObject.error != undefined) {
+                    console.log(jsonObject.error);  
+                    return;
+                } 
+                else if (jsonObject.info != undefined){
+                    console.log(jsonObject.info);
+                }  
+            }
+        };
+        xhr.send(jsonPayload);
+    } catch (err){
+        console.log("Error deleting contact: " + err.message);
+    }
 }
 
 function addElementToTable(firstName, lastName, phone, email){
@@ -317,7 +340,7 @@ contactList.addEventListener('click', (event) => {
                 contact.Phone === contactNumberElement.textContent &&
                 contact.Email === contactEmailElement.textContent) {
                 contactID = contact.ID;
-                console.log(contactID);
+                console.log(`Editing contact with ID ${contactID}`);
             }
         });
 
@@ -327,6 +350,33 @@ contactList.addEventListener('click', (event) => {
         submitDataBtn.removeEventListener('click', handleNewContactSubmit);  
         submitDataBtn.removeEventListener('click', handleEditContactSubmit); 
         submitDataBtn.addEventListener('click', () => handleEditContactSubmit(contactID)); 
+    }
+    else if (event.target && event.target.id === 'trash-icon'){
+        const contactItem = event.target.closest('.contact-item');
+        
+        const contactFirstNameElement = contactItem.querySelector("#first-name");
+        const contactLastNameElement = contactItem.querySelector("#last-name");
+        const contactNumberElement = contactItem.querySelector('#contact-number');
+        const contactEmailElement = contactItem.querySelector('#contact-email');
+        
+        if (confirm(`Are you sure you want to delete the contact "${contactFirstNameElement.textContent} ${contactLastNameElement.textContent}"?`)) {
+            let contactID;
+
+            userContacts = userContacts.filter(contact => {
+                if (contact.FirstName === contactFirstNameElement.textContent &&
+                    contact.LastName === contactLastNameElement.textContent &&
+                    contact.Phone === contactNumberElement.textContent &&
+                    contact.Email === contactEmailElement.textContent) {
+                    contactID = contact.ID;
+                    console.log(`Deleting contact with ID ${contactID}`);
+                    return false;
+                }
+                return true; 
+            });
+
+            deleteContact(contactID);
+            contactItem.remove();
+        }
     }
 });
 
