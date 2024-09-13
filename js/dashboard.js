@@ -274,6 +274,8 @@ exitBtn.addEventListener('click', function() {
     emailInput.value = '';
 });
 
+//testing
+
 //editIcon.addEventListener('click', function() {      
     
     // document.getElementById('edit-contact-modal').style.display = 'flex';
