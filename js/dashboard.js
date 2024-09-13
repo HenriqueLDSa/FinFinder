@@ -1,10 +1,7 @@
-<<<<<<< HEAD
 document.addEventListener("DOMContentLoaded", readCookie);
 window.onload = loadContacts();
 
-=======
 //initialize global variables
->>>>>>> c0564b6fc9d3b2b2335ed73ebc4c60de023b2f52
 const urlBase = 'http://team27poosd.site/LAMPAPI';
 const extension = 'php';
 
@@ -143,7 +140,6 @@ function addContact(firstName, lastName, number, email) {
         //the thing with alerts is that any time something happens, it's gonna pause the page and display on the screen whereas console log will allow devs to view the error in the inspect tools without stopping the site from working. 
         //alert(err);
     }
-<<<<<<< HEAD
 }
 
 function editContact(firstName, lastName, number, email){
@@ -188,8 +184,8 @@ function addElementToTable(firstName, lastName, phone, email){
 }
 
 logoutBtn.addEventListener('click', doLogout);
-=======
-}
+
+
 
 function loadContacts() {
     let newContactObj = 
@@ -321,7 +317,6 @@ function deleteContact(id){
 */
 
 document.addEventListener("DOMContentLoaded", function() {
->>>>>>> c0564b6fc9d3b2b2335ed73ebc4c60de023b2f52
 
     readCookie(); 
     //sidebar elements 
