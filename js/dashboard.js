@@ -262,6 +262,11 @@ document.addEventListener("DOMContentLoaded", function() {
         document.body.classList.add('modal-open');
     });
 
+    //added about us button
+    aboutUsBtn.addEventListener('click', () => {
+        window.location.href = "about.html";
+    });
+
     exitBtn.addEventListener('click', function() {
         nameModal.style.display = 'none';
         document.body.classList.remove('modal-open'); 
