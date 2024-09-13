@@ -1,7 +1,8 @@
-document.addEventListener("DOMContentLoaded", readCookie);
-window.onload = loadContacts;
+document.addEventListener("DOMContentLoaded", function() {
+    readCookie();
+    loadContacts();
+});
 
-//initialize global variables
 const urlBase = 'http://team27poosd.site/LAMPAPI';
 const extension = 'php';
 
@@ -9,23 +10,21 @@ const aboutUsBtn = document.getElementById("about-us-btn");
 const logoutBtn = document.getElementById("logout-btn");
 const contactBtn = document.getElementById("contacts-btn");
 
-//header grid elements
 const newContactBtn = document.querySelector(".new-user-button");
 const refreshBtn = document.getElementById("refreshButton"); 
 
-//modal form elements
+const contactList = document.querySelector('.contact-item-container');
 const exitBtn = document.getElementById("exitBtn");
-const nameModal = document.getElementById('contact-data-modal');
+const contactDataModal = document.getElementById('contact-data-modal');
 const submitDataBtn = document.getElementById('submitDataBtn');
 const firstNameInput = document.getElementById('firstNameInput');
 const lastNameInput = document.getElementById('lastNameInput');
 const numberInput = document.getElementById('numberInput');
 const emailInput = document.getElementById('emailInput'); 
 
-let userId = 0;
+let userId;
 let firstName = "";
 let lastName = "";
-
 let userContacts = [];
 
 function readCookie() {
@@ -57,14 +56,6 @@ function readCookie() {
     }
 }
 
-function doLogout() {
-	userId = 0;
-	firstName = "";
-	lastName = "";
-	document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
-	window.location.href = "index.html";
-}
-
 async function loadContacts() {
     let payloadObj = 
     {
@@ -83,6 +74,9 @@ async function loadContacts() {
             if (this.readyState == 4 && this.status == 200)
             {
                 userContacts = JSON.parse(this.responseText);
+                
+                const contactContainer = document.querySelector(".contact-item-container");
+                contactContainer.innerHTML = "";
 
                 userContacts.forEach(element => {
                     addElementToTable(element.FirstName, element.LastName, element.Phone, element.Email);
@@ -122,30 +116,10 @@ function addContact(firstName, lastName, number, email) {
                 if (jsonObject.error != "") {
                     console.log(jsonObject.error);
                     return;
-                }
-
-                // Close the modal and clear input fields
-                nameModal.style.display = 'none';
-                document.body.classList.remove('modal-open');
-                firstNameInput.value = '';
-                lastNameInput.value = ''
-                numberInput.value = '';
-                emailInput.value = '';
+                }                
             }
             
-            // After successfully adding the contact, reload the contact list
             loadContacts();
-
-            /*
-            if (this.readyState == 4 && this.status == 200)
-            {
-                let response = JSON.parse(this.responseText);
-                
-                
-                let message = response.info;
-                alert(message);
-            }
-            */
         };
         xhr.send(jsonPayload);
     }
@@ -155,7 +129,7 @@ function addContact(firstName, lastName, number, email) {
 }
 
 function editContact(firstName, lastName, number, email){
-
+    
 }
 
 function deleteContact(){
@@ -185,8 +159,10 @@ function addElementToTable(firstName, lastName, phone, email){
     contactMods.className = "contact-mods";
     const editIcon = document.createElement("i");
     editIcon.className = "far fa-edit";
+    editIcon.id = "edit-icon";
     const trashIcon = document.createElement("i");
     trashIcon.className = "fa fa-trash-alt";
+    trashIcon.id = "trash-icon";
     contactMods.appendChild(editIcon);
     contactMods.appendChild(trashIcon);
     newContactElement.appendChild(contactMods);
@@ -195,8 +171,13 @@ function addElementToTable(firstName, lastName, phone, email){
     contactContainer.appendChild(newContactElement);
 }
 
-//event listeners for side bar
-logoutBtn.addEventListener('click', doLogout);
+logoutBtn.addEventListener('click', () => {
+    userId = -1;
+	firstName = "";
+	lastName = "";
+	document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+	window.location.href = "index.html";
+});
 
 contactBtn.addEventListener('click', () => {
     window.location.href = "dashboard.html";
@@ -206,45 +187,121 @@ aboutUsBtn.addEventListener('click', () => {
     window.location.href = "about.html";
 });
 
-
-//event listeners for header grid elements
 refreshBtn.addEventListener('click', loadContacts); 
 
 newContactBtn.addEventListener('click', function() {
-    nameModal.style.display = 'flex';
+    contactDataModal.style.display = 'flex';
     document.body.classList.add('modal-open');
+
+    submitDataBtn.onclick = function() {
+        const firstName = firstNameInput.value;
+        const lastName = lastNameInput.value;
+        const phoneNum = numberInput.value;
+        const emailAdd = emailInput.value;
+    
+        if (!firstName) {
+            alert('Please enter the first name.');
+        }
+        else if (!lastName) {
+            alert('Please enter the last name.');
+        }
+        else if (!phoneNum) {
+            alert('Please enter the phone number.');
+        }
+        else if (!emailAdd) {
+            alert('Please enter the email address.');
+        }
+        else {
+            addContact(firstName, lastName, phoneNum, emailAdd);
+            contactDataModal.style.display = 'none';
+            document.body.classList.remove('modal-open');
+            firstNameInput.value = '';
+            lastNameInput.value = ''
+            numberInput.value = '';
+            emailInput.value = '';
+        }
+    };
 });
 
+contactList.addEventListener('click', (event) => {
+    if (event.target && event.target.id === 'edit-icon') {
+        const contactItem = event.target.closest('.contact-item');
+        
+        const contactNameElement = contactItem.querySelector('#contact-name');
+        const contactNumberElement = contactItem.querySelector('#contact-number');
+        const contactEmailElement = contactItem.querySelector('#contact-email');
+        
+        contactDataModal.style.display = 'flex';
+        document.body.classList.add('modal-open');
 
+        submitDataBtn.onclick = function() {
+            const firstName = firstNameInput.value;
+            const lastName = lastNameInput.value;
+            const phoneNum = numberInput.value;
+            const emailAdd = emailInput.value;
+        
+            if (!firstName) {
+                alert('Please enter the first name.');
+            }
+            else if (!lastName) {
+                alert('Please enter the last name.');
+            }    
+            else if (!phoneNum) {
+                alert('Please enter the phone number.');
+            }
+            else if (!emailAdd) {
+                alert('Please enter the email address.');
+            }
+            else {
+                editContact(firstName, lastName, phoneNum, emailAdd);
+                contactDataModal.style.display = 'none';
+                document.body.classList.remove('modal-open');
+                firstNameInput.value = '';
+                lastNameInput.value = ''
+                numberInput.value = '';
+                emailInput.value = '';
+            }
+        };
+    }
+});
 
-//event listeners for modal
 exitBtn.addEventListener('click', function() {
-    nameModal.style.display = 'none';
+    contactDataModal.style.display = 'none';
     document.body.classList.remove('modal-open'); 
+    firstNameInput.value = '';
+    lastNameInput.value = ''
+    numberInput.value = '';
+    emailInput.value = '';
 });
 
-submitDataBtn.addEventListener('click', function() {
-    const firstName = firstNameInput.value;
-    const lastName = lastNameInput.value;
-    const phoneNum = numberInput.value;
-    const emailAdd = emailInput.value;
+//editIcon.addEventListener('click', function() {      
+    
+    // document.getElementById('edit-contact-modal').style.display = 'flex';
+    // document.body.classList.add('modal-open');
 
-    if (!firstName) {
-        alert('Please enter the first name.');
-    }
-    else if (!phoneNum) {
-        alert('Please enter the phone number.');
-    }
-    else if (!emailAdd) {
-        alert('Please enter the email address.');
-    }
-    else {
-        addContact(firstName, lastName, phoneNum, emailAdd);
-        nameModal.style.display = 'none';
-        document.body.classList.remove('modal-open');
-    }
-});
+    // // Save button event to trigger editContacts
+    // document.getElementById('submitEditBtn').onclick = function() {
+    //     const updatedFirstName = document.getElementById('FirstNameInput').value;
+    //     const updatedLastName = document.getElementById('lastNameInput').value; 
+    //     const updatedNumber = document.getElementById('NumberInput').value;
+    //     const updatedEmail = document.getElementById('EmailInput').value;
+        
+    //     //we need the id to track which contact we're editing. Each contact has a unique userID that we can use to track it
 
+    //     //FOR HENRIQUE (Uncomment editContact(jsonObject[i].ID, updatedFirstName, updatedLastName, updatedNumber, updatedEmail) )
+    //     //editContact(jsonObject[i].ID, updatedFirstName, updatedLastName, updatedNumber, updatedEmail);
+
+    //     document.getElementById('edit-contact-modal').style.display = 'none';
+    //     document.body.classList.remove('modal-open');
+    // };
+    
+    // // Exit button event in editContacts
+    // document.getElementById('exitEditBtn').onclick = function() {
+    //     document.getElementById('edit-contact-modal').style.display = 'none';
+    //     document.body.classList.remove('modal-open'); 
+    // };
+
+//});
 
 // function loadContacts() {
 //     let newContactObj = 
@@ -364,86 +421,3 @@ submitDataBtn.addEventListener('click', function() {
 //         console.log("Error loading contacts: " + err.message);
 //     }
 // }
-
-// /* 
-// function editContact(id, firstName, lastName, number, email){
-
-// }
-
-// function deleteContact(id){
-    
-// }
-// */
-
-// document.addEventListener("DOMContentLoaded", function() {
-
-//     readCookie(); 
-//     //sidebar elements 
-//     const aboutUsBtn = document.getElementById("about-us-btn");
-//     const logoutBtn = document.getElementById("logout-btn");
-//     const contactBtn = document.getElementById("contacts-btn");
-
-//     //header grid elements
-//     const newContactBtn = document.querySelector(".new-user-button");
-//     const refreshBtn = document.getElementById("refreshButton"); 
-
-//     //modal form elements
-//     const exitBtn = document.getElementById("exitBtn");
-//     const nameModal = document.getElementById('contact-data-modal');
-//     const submitDataBtn = document.getElementById('submitDataBtn');
-//     const firstNameInput = document.getElementById('firstNameInput');
-//     const lastNameInput = document.getElementById('lastNameInput');
-//     const numberInput = document.getElementById('numberInput');
-//     const emailInput = document.getElementById('emailInput'); 
-    
-    
-//     //event listeners for side bar
-//     logoutBtn.addEventListener('click', doLogout);
-
-//     contactBtn.addEventListener('click', () => {
-//         window.location.href = "dashboard.html";
-//     });
-
-//     aboutUsBtn.addEventListener('click', () => {
-//         window.location.href = "about.html";
-//     });
-
-
-//     //event listeners for header grid elements
-//     refreshBtn.addEventListener('click', loadContacts); 
-
-//     newContactBtn.addEventListener('click', function() {
-//         nameModal.style.display = 'flex';
-//         document.body.classList.add('modal-open');
-//     });
-
-    
-
-//     //event listeners for modal
-//     exitBtn.addEventListener('click', function() {
-//         nameModal.style.display = 'none';
-//         document.body.classList.remove('modal-open'); 
-//     });
-
-//     submitDataBtn.addEventListener('click', function() {
-//         const firstName = firstNameInput.value;
-//         const lastName = lastNameInput.value;
-//         const phoneNum = numberInput.value;
-//         const emailAdd = emailInput.value;
-
-//         if (!firstName) {
-//             alert('Please enter the first name.');
-//         }
-//         else if (!phoneNum) {
-//             alert('Please enter the phone number.');
-//         }
-//         else if (!emailAdd) {
-//             alert('Please enter the email address.');
-//         }
-//         else {
-//             addContact(firstName, lastName, phoneNum, emailAdd);
-//             nameModal.style.display = 'none';
-//             document.body.classList.remove('modal-open');
-//         }
-//     });
-// });
