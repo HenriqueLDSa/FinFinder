@@ -192,24 +192,42 @@ body {
     justify-content: start;
     flex: 1;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-inline: 2.5px;
 }
 
 #contact-number {
     justify-content: center;    
     flex: 1;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-inline: 2.5px;
 }
 
 #contact-email {
     justify-content: end;
     flex: 1;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-inline: 2.5px;
 }
 
 .contact-item .contact-mods {
     align-content: center;
     flex: 0.2;
     white-space: nowrap;
+    margin-inline: 2.5px;
+}
+
+#edit-icon {
+    margin-right: 2.5px;
+}
+
+#trash-icon {
+    margin-left: 2.5px;
 }
 
 .modal {

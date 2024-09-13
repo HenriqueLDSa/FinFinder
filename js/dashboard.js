@@ -74,6 +74,14 @@ async function loadContacts() {
             if (this.readyState == 4 && this.status == 200)
             {
                 userContacts = JSON.parse(this.responseText);
+
+                if (userContacts.error != undefined) {
+                    console.log(userContacts.error);  
+                    return;
+                } 
+                else {
+                    console.log(userContacts);
+                }
                 
                 const contactContainer = document.querySelector(".contact-item-container");
                 contactContainer.innerHTML = "";
@@ -109,17 +117,19 @@ function addContact(firstName, lastName, number, email) {
     try {
         xhr.onreadystatechange = function()
         {
-
             if (this.readyState == 4 && this.status == 200) {
                 let jsonObject = JSON.parse(xhr.responseText);
 
-                if (jsonObject.error != "") {
-                    console.log(jsonObject.error);
-                    return;
-                }                
-            }
-            
-            loadContacts();
+                if (jsonObject.error != undefined) {
+                    console.log(jsonObject.error); 
+                    return; 
+                } 
+                else if (jsonObject.info != undefined){
+                    console.log(jsonObject.info);
+                }
+
+                loadContacts();
+            }            
         };
         xhr.send(jsonPayload);
     }
@@ -128,8 +138,43 @@ function addContact(firstName, lastName, number, email) {
     }
 }
 
-function editContact(firstName, lastName, number, email){
-    
+function editContact(id, firstName, lastName, number, email){
+    let editContactObj = {
+        "id": id,
+        "firstName": firstName,
+        "lastName": lastName,
+        "phone": number,
+        "email": email
+    }
+
+    let jsonPayload = JSON.stringify(editContactObj);
+    let url = urlBase + "/updateContact." + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try {
+        xhr.onreadystatechange = function()
+        {
+            if (this.readyState == 4 && this.status == 200) {
+                let jsonObject = JSON.parse(xhr.responseText);
+
+                if (jsonObject.error != undefined) {
+                    console.log(jsonObject.error);  
+                    return;
+                } 
+                else if (jsonObject.info != undefined){
+                    console.log(jsonObject.info);
+                }    
+                
+                loadContacts();
+            }
+        };
+        xhr.send(jsonPayload);
+    } catch (err) {
+        console.log("Error editing contact: " + err.message);
+    }
 }
 
 function deleteContact(){
@@ -142,7 +187,15 @@ function addElementToTable(firstName, lastName, phone, email){
 
     const contactName = document.createElement("span");
     contactName.id = "contact-name";
-    contactName.textContent = firstName + " " + lastName;
+    const firstNameSpan = document.createElement("span");
+    firstNameSpan.id = "first-name";
+    firstNameSpan.textContent = firstName;
+    const lastNameSpan = document.createElement("span");
+    lastNameSpan.id = "last-name";
+    lastNameSpan.textContent = lastName;
+    contactName.appendChild(firstNameSpan);
+    contactName.appendChild(document.createTextNode(" ")); 
+    contactName.appendChild(lastNameSpan);
     newContactElement.appendChild(contactName);
 
     const contactNumber = document.createElement("span");
@@ -189,79 +242,91 @@ aboutUsBtn.addEventListener('click', () => {
 
 refreshBtn.addEventListener('click', loadContacts); 
 
-newContactBtn.addEventListener('click', function() {
+function handleNewContactSubmit() {
+    const firstName = firstNameInput.value;
+    const lastName = lastNameInput.value;
+    const phoneNum = numberInput.value;
+    const emailAdd = emailInput.value;
+
+    if (!firstName) {
+        alert('Please enter the first name.');
+    } else if (!lastName) {
+        alert('Please enter the last name.');
+    } else if (!phoneNum) {
+        alert('Please enter the phone number.');
+    } else if (!emailAdd) {
+        alert('Please enter the email address.');
+    } else {
+        addContact(firstName, lastName, phoneNum, emailAdd);
+        contactDataModal.style.display = 'none';
+        document.body.classList.remove('modal-open');
+        firstNameInput.value = '';
+        lastNameInput.value = '';
+        numberInput.value = '';
+        emailInput.value = '';
+    }
+}
+
+function handleEditContactSubmit(contactID) {
+    const firstName = firstNameInput.value;
+    const lastName = lastNameInput.value;
+    const phoneNum = numberInput.value;
+    const emailAdd = emailInput.value;
+
+    if (!firstName) {
+        alert('Please enter the first name.');
+    } else if (!lastName) {
+        alert('Please enter the last name.');
+    } else if (!phoneNum) {
+        alert('Please enter the phone number.');
+    } else if (!emailAdd) {
+        alert('Please enter the email address.');
+    } else {
+        editContact(contactID, firstName, lastName, phoneNum, emailAdd);
+        contactDataModal.style.display = 'none';
+        document.body.classList.remove('modal-open');
+        firstNameInput.value = '';
+        lastNameInput.value = '';
+        numberInput.value = '';
+        emailInput.value = '';
+    }
+}
+
+newContactBtn.addEventListener('click', function () {
     contactDataModal.style.display = 'flex';
     document.body.classList.add('modal-open');
 
-    submitDataBtn.onclick = function() {
-        const firstName = firstNameInput.value;
-        const lastName = lastNameInput.value;
-        const phoneNum = numberInput.value;
-        const emailAdd = emailInput.value;
-    
-        if (!firstName) {
-            alert('Please enter the first name.');
-        }
-        else if (!lastName) {
-            alert('Please enter the last name.');
-        }
-        else if (!phoneNum) {
-            alert('Please enter the phone number.');
-        }
-        else if (!emailAdd) {
-            alert('Please enter the email address.');
-        }
-        else {
-            addContact(firstName, lastName, phoneNum, emailAdd);
-            contactDataModal.style.display = 'none';
-            document.body.classList.remove('modal-open');
-            firstNameInput.value = '';
-            lastNameInput.value = ''
-            numberInput.value = '';
-            emailInput.value = '';
-        }
-    };
+    submitDataBtn.removeEventListener('click', handleNewContactSubmit);
+    submitDataBtn.addEventListener('click', handleNewContactSubmit);
 });
 
 contactList.addEventListener('click', (event) => {
     if (event.target && event.target.id === 'edit-icon') {
         const contactItem = event.target.closest('.contact-item');
-        
-        const contactNameElement = contactItem.querySelector('#contact-name');
+
+        const contactFirstNameElement = contactItem.querySelector("#first-name");
+        const contactLastNameElement = contactItem.querySelector("#last-name");
         const contactNumberElement = contactItem.querySelector('#contact-number');
         const contactEmailElement = contactItem.querySelector('#contact-email');
-        
+
+        let contactID;
+
+        userContacts.forEach(contact => {
+            if (contact.FirstName === contactFirstNameElement.textContent &&
+                contact.LastName === contactLastNameElement.textContent &&
+                contact.Phone === contactNumberElement.textContent &&
+                contact.Email === contactEmailElement.textContent) {
+                contactID = contact.ID;
+                console.log(contactID);
+            }
+        });
+
         contactDataModal.style.display = 'flex';
         document.body.classList.add('modal-open');
 
-        submitDataBtn.onclick = function() {
-            const firstName = firstNameInput.value;
-            const lastName = lastNameInput.value;
-            const phoneNum = numberInput.value;
-            const emailAdd = emailInput.value;
-        
-            if (!firstName) {
-                alert('Please enter the first name.');
-            }
-            else if (!lastName) {
-                alert('Please enter the last name.');
-            }    
-            else if (!phoneNum) {
-                alert('Please enter the phone number.');
-            }
-            else if (!emailAdd) {
-                alert('Please enter the email address.');
-            }
-            else {
-                editContact(firstName, lastName, phoneNum, emailAdd);
-                contactDataModal.style.display = 'none';
-                document.body.classList.remove('modal-open');
-                firstNameInput.value = '';
-                lastNameInput.value = ''
-                numberInput.value = '';
-                emailInput.value = '';
-            }
-        };
+        submitDataBtn.removeEventListener('click', handleNewContactSubmit);  
+        submitDataBtn.removeEventListener('click', handleEditContactSubmit); 
+        submitDataBtn.addEventListener('click', () => handleEditContactSubmit(contactID)); 
     }
 });
 
@@ -273,6 +338,62 @@ exitBtn.addEventListener('click', function() {
     numberInput.value = '';
     emailInput.value = '';
 });
+
+// contactList.addEventListener('click', (event) => {
+//     if (event.target && event.target.id === 'edit-icon') {
+//         const contactItem = event.target.closest('.contact-item');
+        
+//         const contactNameElement = contactItem.querySelector('#contact-name');
+//         const contactFirstNameElement = contactNameElement.querySelector("#first-name");
+//         const contactLastNameElement = contactNameElement.querySelector("#last-name");
+//         const contactNumberElement = contactItem.querySelector('#contact-number');
+//         const contactEmailElement = contactItem.querySelector('#contact-email');
+
+//         let contactID;
+
+//         userContacts.forEach(contact => {
+//             if (contact.FirstName === contactFirstNameElement.textContent && 
+//                 contact.LastName === contactLastNameElement.textContent && 
+//                 contact.Phone === contactNumberElement.textContent && 
+//                 contact.Email === contactEmailElement.textContent) {
+//                 contactID = contact.ID;
+//                 console.log(contactID);
+//             }
+//         });
+        
+//         contactDataModal.style.display = 'flex';
+//         document.body.classList.add('modal-open');
+
+//         submitDataBtn.onclick = function() {
+//             const firstName = firstNameInput.value;
+//             const lastName = lastNameInput.value;
+//             const phoneNum = numberInput.value;
+//             const emailAdd = emailInput.value;
+        
+//             if (!firstName) {
+//                 alert('Please enter the first name.');
+//             }
+//             else if (!lastName) {
+//                 alert('Please enter the last name.');
+//             }    
+//             else if (!phoneNum) {
+//                 alert('Please enter the phone number.');
+//             }
+//             else if (!emailAdd) {
+//                 alert('Please enter the email address.');
+//             }
+//             else {
+//                 editContact(contactID, firstName, lastName, phoneNum, emailAdd);
+//                 contactDataModal.style.display = 'none';
+//                 document.body.classList.remove('modal-open');
+//                 firstNameInput.value = '';
+//                 lastNameInput.value = ''
+//                 numberInput.value = '';
+//                 emailInput.value = '';
+//             }
+//         };
+//     }
+// });
 
 //testing
 
