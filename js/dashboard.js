@@ -183,10 +183,6 @@ function addElementToTable(firstName, lastName, phone, email){
     contactContainer.appendChild(newContactElement);
 }
 
-logoutBtn.addEventListener('click', doLogout);
-
-
-
 function loadContacts() {
     let newContactObj = 
     {
