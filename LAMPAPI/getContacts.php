@@ -19,6 +19,7 @@
     {
         returnWithError( $conn->connect_error );
     } else {
+<<<<<<< HEAD
         // Prepare and execute the SQL query
         $stmt = $conn->prepare("SELECT * FROM Contacts WHERE UserID=?");
         $stmt->bind_param("i", $userID);
@@ -42,10 +43,34 @@
             // Error handling
             returnWithError($stmt->error);
         }
+=======
+       // Prepare and execute the SQL query
+       $stmt = $conn->prepare("SELECT * FROM Contacts WHERE UserID=?");
+       $stmt->bind_param("i", $userID);
+       
+       if ($stmt->execute()) {
+           $result = $stmt->get_result();
+           $contacts = array();
 
-        // Close statement and connection
-        $stmt->close();
-        $conn->close();
+           // Fetch all contacts as an associative array
+           while ($row = $result->fetch_assoc()) {
+               $contacts[] = $row;
+           }
+>>>>>>> c0564b6fc9d3b2b2335ed73ebc4c60de023b2f52
+
+           if (count($contacts) > 0) {
+               returnWithInfo($contacts);  // Return all contacts
+           } else {
+               returnWithError("No contacts found.");
+           }
+       } else {
+           // Error handling
+           returnWithError($stmt->error);
+       }
+
+       // Close statement and connection
+       $stmt->close();
+       $conn->close();
     }
 
     function getRequestInfo()
