@@ -123,6 +123,11 @@ body {
     margin-left: 5px;
 }
 
+.button-container {
+    display: flex;
+    gap: 10px; /* Add space between the buttons */
+}
+
 .new-user-button {
     padding: 10px 20px;
     background-color: #007BFF; 
@@ -130,9 +135,11 @@ body {
     border: none;
     border-radius: 50px;
     cursor: pointer;
+    display: flex;
     transition: background-color 0.3s ease;
     flex-shrink: 0; 
 }
+
 
 .search-grid {
     margin-top: 10px;
@@ -166,7 +173,6 @@ body {
 
 .contact-item-container {
     flex-grow: 1; 
-    overflow-y: auto;
     margin-top: 3%;
     background: transparent;
     width: 100%;
@@ -180,51 +186,30 @@ body {
     padding-bottom: 5px;
     font-size: 17px;
     display: flex;
-    overflow-x: hidden;
-    white-space: nowrap;
 }
 
 #contact-name {
     justify-content: start;
     flex: 1;
     white-space: nowrap;
-    overflow: hidden; 
-    text-overflow: ellipsis;
-    margin-inline: 2.5px;
 }
 
 #contact-number {
     justify-content: center;    
     flex: 1;
-    overflow-x: auto;
     white-space: nowrap;
-    overflow: hidden; 
-    text-overflow: ellipsis; 
-    margin-inline: 2.5px;
 }
 
 #contact-email {
     justify-content: end;
     flex: 1;
     white-space: nowrap;
-    overflow: hidden; 
-    text-overflow: ellipsis;
-    margin-inline: 2.5px;
 }
 
 .contact-item .contact-mods {
     align-content: center;
     flex: 0.2;
     white-space: nowrap;
-    margin-inline: 2.5px;
-}
-
-#editIcon {
-    margin-right: 2.5px;
-}
-
-#deleteIcon {
-    margin-left: 2.5px;
 }
 
 .modal {
@@ -241,38 +226,48 @@ body {
 }
 
 .modal-content {
-    background-color: white;
     padding: 20px;
     border-radius: 5px;
     text-align: center;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.5);
 }
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    border: none;
+    outline: none; 
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 40px;
+    font-size: 16;
+    border-radius: 40px;
+    padding: 20px 45px 20px 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.submit-button button {
+    width: 100%;
+    height: 45px;
+    background: #fff;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, .2);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+}
+
 
 body.modal-open {
     overflow: hidden;
 }
-.contributors-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 20px;
-}
 
-.contributor {
-    text-align: center;
-    padding: 10px;
-}
-
-.contributor img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 10px;
-}
-
-.contributor p {
-    font-size: 1em;
-    color: #333;
-    margin: 0;
+.contact-mods i {
+    margin-right: 10px;
 }

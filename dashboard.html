@@ -23,7 +23,10 @@
                 <main class="main-content">
                     <div class="header-grid">
                         <h2 class="main-title">Contacts</h2>
-                        <button class="new-user-button">New Contact</button>
+                        <div class="button-container">
+                            <button class="new-user-button">New Contact</button>
+                            <button class="new-user-button" id="refreshButton">Refresh</button>
+                        </div>
                     </div>
 
                     <div class="search-grid">
@@ -32,33 +35,72 @@
                             <input type="text" class="search-bar" placeholder="Search...">
                         </div>
                     </div>
+                    
 
-                    <div class="contact-item-container">
-                        <!-- <div class="contact-item">
-                            <span id="contact-name">Henrique</span>
-                            <span id="contact-number">000-000-0000</span>
-                            <span id="contact-email">henrique@test.com</span>
-                            <div class="contact-mods">
-                                <i id="editIcon" class="far fa-edit"></i><i id="deleteIcon" class="fa fa-trash-alt"></i>
-                            </div>
-                        </div> -->
-                    </div>
+                    <!-- This is where contacts will be dynamically generated -->
+                    <div class="contact-item-container"></div>
                 </main>
             </div>
-
+        
             <div id="contact-data-modal" class="modal">
                 <div class="modal-content">
-                    <p>Please enter your first name:</p>
-                    <input type="text" id="firstNameInput" placeholder="First Name">
-                    <input type="text" id="lastNameInput" placeholder="Last Name">
-                    <input type="text" id="numberInput" placeholder="Number">
-                    <input type="text" id="emailInput" placeholder="Email">
-                    <button id="cancelBtn">Cancel</button>
-                    <button id="submitDataBtn">Save</button>
+                    <div class="input-box"> 
+                        <input type="text" id="firstNameInput" placeholder="First Name">
+                    </div>
+
+                    <div class="input-box">
+                        <input type="text" id="lastNameInput" placeholder="Last Name">
+                    </div>
+
+                    <div class="input-box">
+                        <input type="text" id="numberInput" placeholder="Number">
+                    </div>
+
+                    <div class="input-box">
+                        <input type="text" id="emailInput" placeholder="Email">
+                    </div>
+                    
+                    <div class="submit-button">
+                        <button id="submitDataBtn">Save</button>
+                    </div>
+                    
+                    <div class="submit-button">
+                        <button id="exitBtn">Exit</button>
+                    </div>
                 </div>
             </div>
-        </div>
 
+
+            <!-- Modal for Editing a Contact -->
+            <div id="edit-contact-modal" class="modal">
+                <div class="modal-content">
+                    <div class="input-box"> 
+                        <input type="text" id="firstNameInput" placeholder="First Name">
+                    </div>
+
+                    <div class="input-box">
+                        <input type="text" id="lastNameInput" placeholder="Last Name">
+                    </div>
+
+                    <div class="input-box">
+                        <input type="text" id="NumberInput" placeholder="Number">
+                    </div>
+
+                    <div class="input-box">
+                        <input type="text" id="EmailInput" placeholder="Email">
+                    </div>
+                    
+                    <div class="submit-button">
+                        <button id="submitEditBtn">Update Contact</button>
+                    </div>
+                    
+                    <div class="submit-button">
+                        <button id="exitEditBtn">Exit</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
         <script src="js/dashboard.js"></script>
     </body>
 </html>
