@@ -240,12 +240,16 @@ function deleteContact(id){
 document.addEventListener("DOMContentLoaded", function() {
 
     readCookie(); 
-
+    //sidebar elements 
     const aboutUsBtn = document.getElementById("about-us-btn");
     const logoutBtn = document.getElementById("logout-btn");
+    const contactBtn = document.getElementById("contacts-btn");
 
+    //header grid elements
     const newContactBtn = document.querySelector(".new-user-button");
     const refreshBtn = document.getElementById("refreshButton"); 
+
+    //modal form elements
     const exitBtn = document.getElementById("exitBtn");
     const nameModal = document.getElementById('contact-data-modal');
     const submitDataBtn = document.getElementById('submitDataBtn');
@@ -253,20 +257,31 @@ document.addEventListener("DOMContentLoaded", function() {
     const lastNameInput = document.getElementById('lastNameInput');
     const numberInput = document.getElementById('numberInput');
     const emailInput = document.getElementById('emailInput'); 
-    refreshBtn.addEventListener('click', loadContacts); 
-
+    
+    
+    //event listeners for side bar
     logoutBtn.addEventListener('click', doLogout);
+
+    contactBtn.addEventListener('click', () => {
+        window.location.href = "dashboard.html";
+    });
+
+    aboutUsBtn.addEventListener('click', () => {
+        window.location.href = "about.html";
+    });
+
+
+    //event listeners for header grid elements
+    refreshBtn.addEventListener('click', loadContacts); 
 
     newContactBtn.addEventListener('click', function() {
         nameModal.style.display = 'flex';
         document.body.classList.add('modal-open');
     });
 
-    //added about us button
-    aboutUsBtn.addEventListener('click', () => {
-        window.location.href = "about.html";
-    });
+    
 
+    //event listeners for modal
     exitBtn.addEventListener('click', function() {
         nameModal.style.display = 'none';
         document.body.classList.remove('modal-open'); 
