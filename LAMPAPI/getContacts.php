@@ -19,6 +19,31 @@
     {
         returnWithError( $conn->connect_error );
     } else {
+<<<<<<< HEAD
+        // Prepare and execute the SQL query
+        $stmt = $conn->prepare("SELECT * FROM Contacts WHERE UserID=?");
+        $stmt->bind_param("i", $userID);
+        
+        if ($stmt->execute()) {
+            $result = $stmt->get_result();
+            $contacts = array(); // Initialize an array to store all contacts
+
+            // Fetch all results as an associative array and store in $contacts array
+            while ($contact = $result->fetch_assoc()) {
+                $contacts[] = $contact;
+            }
+
+            // Check if there are any contacts found
+            if (count($contacts) > 0) {
+                returnWithInfo($contacts); // Return the entire array of contacts
+            } else {
+                returnWithError("No contacts found");
+            }
+        } else {
+            // Error handling
+            returnWithError($stmt->error);
+        }
+=======
        // Prepare and execute the SQL query
        $stmt = $conn->prepare("SELECT * FROM Contacts WHERE UserID=?");
        $stmt->bind_param("i", $userID);
@@ -31,6 +56,7 @@
            while ($row = $result->fetch_assoc()) {
                $contacts[] = $row;
            }
+>>>>>>> c0564b6fc9d3b2b2335ed73ebc4c60de023b2f52
 
            if (count($contacts) > 0) {
                returnWithInfo($contacts);  // Return all contacts

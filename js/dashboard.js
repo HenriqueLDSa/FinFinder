@@ -1,3 +1,6 @@
+document.addEventListener("DOMContentLoaded", readCookie);
+window.onload = loadContacts();
+
 //initialize global variables
 const urlBase = 'http://team27poosd.site/LAMPAPI';
 const extension = 'php';
@@ -5,6 +8,8 @@ const extension = 'php';
 let userId = 0;
 let firstName = "";
 let lastName = "";
+
+let userContacts = [];
 
 function readCookie() {
     userId = -1;
@@ -44,6 +49,35 @@ function doLogout() {
 	lastName = "";
 	document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
 	window.location.href = "index.html";
+}
+
+async function loadContacts() {
+    let payloadObj = 
+    {
+        "userID": userId
+    };
+
+    let jsonPayload = JSON.stringify(payloadObj);
+    let url = urlBase + "/getContacts." + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try {
+        xhr.onreadystatechange = function()
+        {
+            if (this.readyState == 4 && this.status == 200)
+            {
+                userContacts = JSON.parse(this.responseText);
+
+                userContacts.forEach(element => {
+                    addElementToTable(element.firstName, element.lastName, element.number, element.email);
+                });
+            }
+        }
+    } catch (err) {
+        console.log("Error while fetching contacts: " + err);
+    }
 }
 
 function addContact(firstName, lastName, number, email) {
@@ -107,6 +141,51 @@ function addContact(firstName, lastName, number, email) {
         //alert(err);
     }
 }
+
+function editContact(firstName, lastName, number, email){
+
+}
+
+function deleteContact(){
+    
+}
+
+function addElementToTable(firstName, lastName, phone, email){
+    const newContactElement = document.createElement("div");
+    newContactElement.className = "contact-item";
+
+    const contactName = document.createElement("span");
+    contactName.id = "contact-name";
+    contactName.textContent = firstName + " " + lastName;
+    newContactElement.appendChild(contactName);
+
+    const contactNumber = document.createElement("span");
+    contactNumber.id = "contact-number";
+    contactNumber.textContent = number;
+    newContactElement.appendChild(contactNumber);
+    
+    const contactEmail = document.createElement("span");
+    contactEmail.id = "contact-email";
+    contactEmail.textContent = email;
+    newContactElement.appendChild(contactEmail);
+
+    const contactMods = document.createElement("div");
+    contactMods.className = "contact-mods";
+    const editIcon = document.createElement("i");
+    editIcon.className = "far fa-edit";
+    const trashIcon = document.createElement("i");
+    trashIcon.className = "fa fa-trash-alt";
+    contactMods.appendChild(editIcon);
+    contactMods.appendChild(trashIcon);
+    newContactElement.appendChild(contactMods);
+
+    const contactContainer = document.querySelector(".contact-item-container");
+    contactContainer.appendChild(newContactElement);
+}
+
+logoutBtn.addEventListener('click', doLogout);
+
+
 
 function loadContacts() {
     let newContactObj = 
