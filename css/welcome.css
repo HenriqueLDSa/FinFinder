@@ -21,19 +21,20 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    height: 100%;
 }
 
 .title {
     color: antiquewhite;
     font-size: 5.5rem;
-    margin-top: 15vh;
+    margin-top: 15%;
 }
 
 .action-choice {
     display: inherit;
     flex-direction: inherit;
     gap: 30px;
-    margin-top: 15vh;
+    margin-top: 20%;
     white-space: nowrap;
     min-width: 10vw;
 }
