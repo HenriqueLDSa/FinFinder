@@ -1,55 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title> Login </title>
-        <link rel="stylesheet" href="css/style.css">
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-        <script src="js/login.js"></script>
-    </head>
-    <body>
-        <div class="wrapper">    
-            <div class="head-text">
-                Login
-            </div>
-            
-            <div class="input-box">
-                <input type="text" id="username" placeholder="Username" required>
-                <i class='bx bxs-user-circle'></i>
-            </div>
-            
-            <div class="input-box">
-                <input type="password" id="password" placeholder="Password" required>
-                <i class='bx bxs-lock' id="togglePassword" style="cursor: pointer"></i>
-            </div>
-
-            <div class="submit-button">
-                <button id="loginButton" type="submit">Login</button>
-            </div>
-
-            <div id="loginResult" class="login-result"></div> <!-- display success/error message -->
-
-            <div class="page-link">
-                <p> Don't have an Account? <a href="register.html"> Register </a> </p>
-            </div>
-            
-            <div class="page-link">
-                <p> Forgot Your Password? <a href="forgot-password.html"> Forgot Password </a> </p>
-            </div>
-
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WaveLink</title>
+    <link rel="stylesheet" href="css/welcome.css">
+    <link rel="stylesheet" href="css/background.css">
+</head>
+<body>
+    <div class="container">
+        <div class="title">
+            WaveLink
         </div>
-
-        <div class="wave-container">
-            <img src="images/wave.png" alt="Wave" class="wave-image">
+        <div class="action-choice">
+            <a href="login.html"><button id="login">Login</button></a>
+            <a href="register.html"><button id="register">Register</button></a>
+            <a href="about.html"><button id="about-us">About Us</button></a>
         </div>
+    </div>
 
-        <div class="bubbles-container">
-            <img src="images/threeBubbles.png" alt="Bubbles" class="bubbles-image">
-            <img src="images/threeBubbles.png" alt="Bubbles" class="bubbles-image-2">
-            <img src="images/threeBubbles.png" alt="Bubbles" class="bubbles-image-3">
-            <img src="images/oneBubble.png" alt="Bubbles" class="one-bubble-image">
-            <img src="images/oneBubble.png" alt="Bubbles" class="one-bubble-image-2">
-        </div>
-        <!-- <script src="design.js"></script> -->
+    <div class="wave-container">
+        <img src="images/wave.png" alt="Wave" class="wave-image">
+    </div>
 
-    </body>
+    <div class="bubbles-container">
+        <img src="images/threeBubbles.png" alt="Bubbles" class="bubbles-image">
+        <img src="images/threeBubbles.png" alt="Bubbles" class="bubbles-image-2">
+        <img src="images/threeBubbles.png" alt="Bubbles" class="bubbles-image-3">
+        <img src="images/oneBubble.png" alt="Bubbles" class="one-bubble-image">
+        <img src="images/oneBubble.png" alt="Bubbles" class="one-bubble-image-2">
+    </div>
+</body>
 </html>

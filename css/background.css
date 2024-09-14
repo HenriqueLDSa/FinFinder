@@ -1,0 +1,138 @@
+body {
+    background: linear-gradient(270deg, #0a3d91, #1e5bbf, #3778d9, #5b97f1);
+    background-size: 400% 400%;
+    animation: gradientAnimation 5s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 5% 50%;
+    }
+}
+
+.wave-container {
+    position: fixed;
+    width: 100%; 
+    height: 50vh; 
+    bottom: 0;       
+    overflow: hidden; 
+    z-index: -1;      
+}
+
+.wave-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 200%;
+    height: 50vh;
+    animation: wave-scroll 20s linear infinite;
+    z-index: -1;
+    opacity: 0.7;
+}
+
+@keyframes wave-scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* 3 bubbles styling */
+
+.bubbles-container {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;    
+    overflow: hidden;  
+    z-index: -1;      
+}
+
+.bubbles-image {
+    position: absolute;
+    left: 5%;
+    bottom: 0;
+    width: 12%;
+    height: 12%;
+    animation: move-up 15s linear infinite;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+.one-bubble-image {
+    position: absolute;
+    left: 18%;
+    bottom: 0;
+    width: 12%;
+    height: 12%;
+    animation: move-up-fast 10s linear infinite;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+.bubbles-image-2 {
+    position: absolute;
+    left: 44%;
+    bottom: 0;
+    width: 12%;
+    height: 12%;
+    animation: move-up 12s linear infinite;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+.one-bubble-image-2 {
+    position: absolute;
+    left: 70%;
+    bottom: 0;
+    width: 12%;
+    height: 12%;
+    animation: move-up-fast 8s linear infinite;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+.bubbles-image-3 {
+    position: absolute;
+    left: 86%;
+    bottom: 0;
+    width: 12%;
+    height: 12%;
+    animation: move-up 10s linear infinite;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+@keyframes move-up {
+    30% {
+        bottom: 30%;
+        transform: translateX(20%);
+    }
+    65% {
+        bottom: 70%;
+        transform: translateX(-20%);
+    }
+    100% {
+        bottom: 100%;
+        transform: translateX(20%);
+    }
+}
+
+@keyframes move-up-fast {
+    50% {
+        bottom: 50%;
+        transform: translateX(-20%);
+    }
+    100% {
+        bottom: 100%;
+        transform: translateX(20%);
+    }
+}
