@@ -314,4 +314,5 @@ body.modal-open {
     font-size: 1em;
     color: #ffffff;
     margin: 0;
+    white-space: nowrap;
 }
