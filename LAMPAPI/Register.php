@@ -68,7 +68,7 @@ else
 		
 		// Bind the parameters to the SQL statement
 		// 'ssss' indicates that all four parameters are strings
-		$stmt->bind_param("sssss", $firstName, $lastName, $email, $login, $hashedpassword); //s for each entry!!
+		$stmt->bind_param("sssss", $firstName, $lastName, $email, $login, $hashedPassword); //s for each entry!!
 
 		// Execute the SQL statement, if executed
 		if($stmt->execute())
