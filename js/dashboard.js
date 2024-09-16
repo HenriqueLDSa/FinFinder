@@ -272,7 +272,6 @@ function handleNewContactSubmit() {
     const emailAdd = emailInput.value;
 
     if (!firstName) {
-        return;
         // alert('Please enter the first name.');
     } else if (!lastName) {
         alert('Please enter the last name.');
