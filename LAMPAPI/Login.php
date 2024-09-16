@@ -22,7 +22,8 @@
 	else
 	{
 		$stmt = $conn->prepare("SELECT ID,firstName,lastName FROM Users WHERE Login=? AND Password=?");
-		$stmt->bind_param("ss", $inData["login"], $inData["password"]);
+		//check if login exists, AND THEN retrieve hashed password
+		$stmt->bind_param("s", $inData["login"]);
 		$stmt->execute();
 		$result = $stmt->get_result();
 
