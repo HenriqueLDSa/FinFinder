@@ -131,6 +131,13 @@ function returnWithError( $err )
 	sendResultInfoAsJson( $retValue );
 }
 
+//function to return success message (since html isnt working)
+function returnWithMessage($msg)
+{
+	$retValue = '{"message:"' . $msg . '"}';
+	sendResultInfoAsJson( $retValue ); 
+}
+
 //SENDING CONFRIMATION EMAIL USING PHPMAILER
 function sendConfirmationEmail($firstName, $lastName, $email, $login, $password)
 {
