@@ -61,9 +61,11 @@ function doRegister() {
                     document.getElementById("registerResult").innerHTML = jsonObject.error;
                     return;
                 }
-
-                // Registration successful (no JSONobject error as defined in register.php)
-                document.getElementById("registerResult").innerHTML = "User registered successfully";
+                else 
+                {
+                     // Registration successful (no JSONobject error as defined in register.php)
+                    document.getElementById("registerResult").innerHTML = "User registered successfully";
+                }
                 
             }
         };
