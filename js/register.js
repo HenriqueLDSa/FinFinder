@@ -64,7 +64,7 @@ function doRegister() {
                 else if (jsonObject.message) //added success message in php (issue with reading "" for error)
                 {
                      // Registration successful (no JSONobject error as defined in register.php)
-                    document.getElementById("registerResult").innerHTML = jsonbObject.message;
+                    document.getElementById("registerResult").innerHTML = jsonObject.message;
                 }
                 
             }
