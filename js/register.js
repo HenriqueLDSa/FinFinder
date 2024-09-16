@@ -34,6 +34,15 @@ function doRegister() {
         return;
     }
 
+    var regex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+
+    if (regex.test(email) == false) {
+        document.getElementById("registerResult").innerHTML = "Not an actual email address.";
+        return;
+    }
+
+    
+
     // Create the payload with the user details
     let tmp = {firstName: firstName, lastName: lastName, email: email, login: login, password: password};
     let jsonPayload = JSON.stringify(tmp);
