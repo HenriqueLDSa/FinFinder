@@ -79,7 +79,9 @@ else
 			try 
 			{
                 sendConfirmationEmail($firstName, $lastName, $email, $login, $password);
-                returnWithError("");  // Success with no error
+
+				//use in place of html in xhr block defined in doRegister 
+                returnWithMessage("User registered Successfully")
             } 
 			
 			catch (Exception $e) 
