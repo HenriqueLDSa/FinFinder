@@ -81,7 +81,7 @@ else
                 sendConfirmationEmail($firstName, $lastName, $email, $login, $password);
 
 				//use in place of html in xhr block defined in doRegister 
-                returnWithMessage("User registered Successfully")
+                returnWithMessage("User registered Successfully");
             } 
 			
 			catch (Exception $e) 
