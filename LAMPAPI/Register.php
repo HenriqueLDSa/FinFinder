@@ -63,6 +63,9 @@ else
 		// Hash the password before storing it
 		$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 		
+		//troubleshooting
+		var_dump($hashed_password);
+		
 		// Prepare the SQL statement for inserting a new user
 		$stmt = $conn->prepare("INSERT INTO Users (FirstName, LastName, Email, Login, Password) VALUES (?, ?, ?, ?, ?)"); //? for each entry!!!
 		
