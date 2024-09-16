@@ -62,8 +62,8 @@ else
         //generate new password
         $newPassword= generateRandomPassword($existingPassword); 
 
-        //hash the new password (do/explain later**)
-        $hashedPassword = $newPassword;
+        //hash the new password SET Characters in Users to 255: ALTER TABLE Users MODIFY Password VARCHAR(255);
+        $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 
         //update the new password in the database
         $stmt = $conn->prepare("UPDATE Users SET Password=? WHERE Email=?");
