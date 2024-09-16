@@ -28,7 +28,15 @@
 
 		if( $row = $result->fetch_assoc()  )
 		{
-			returnWithInfo( $row['firstName'], $row['lastName'], $row['ID'] );
+			//function to verify if entered password matches hashed password
+			if (password_verify($inData["password"], $row['Password']))
+			{
+				returnWithInfo( $row['firstName'], $row['lastName'], $row['ID'] );
+			}
+			else 
+			{
+				returnWithError("Invalid Credentials!"); 
+			}
 		}
 		else
 		{
