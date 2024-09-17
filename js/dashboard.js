@@ -272,7 +272,7 @@ function handleNewContactSubmit() {
     const emailAdd = emailInput.value;
 
     if (!firstName) {
-        // alert('Please enter the first name.');
+        alert('Please enter the first name.');
     } else if (!lastName) {
         alert('Please enter the last name.');
     } else if (!phoneNum) {
