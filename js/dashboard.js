@@ -296,24 +296,6 @@ function handleEditContactSubmit(contactID) {
     const phoneNum = numberInput.value;
     const emailAdd = emailInput.value;
 
-//here
-
-    let editedContact = userContacts.filter((contact) => contact.id == contactID);
-    document.getElementById('FirstNameInput').value = editedContact.FirstName;
-        // if (contact.FirstName === contactFirstNameElement.textContent &&
-        //     contact.LastName === contactLastNameElement.textContent &&
-        //     contact.Phone === contactNumberElement.textContent &&
-        //     contact.Email === contactEmailElement.textContent) {
-        //     contactID = contact.ID;
-        //     console.log(`Deleting contact with ID ${contactID}`);
-        //     return false;
-        // }
-        //     });
-//     document.getElementById('FirstNameInput').value = contactID;
-// //                         document.getElementById('lastNameInput').value = jsonObject[i].LastName;
-// //                         document.getElementById('NumberInput').value = jsonObject[i].Phone;
-// //                         document.getElementById('EmailInput').value = jsonObject[i].Email;
-
     if (!firstName) {
         alert('Please enter the first name.');
     } else if (!lastName) {
