@@ -345,9 +345,12 @@ contactList.addEventListener('click', (event) => {
         });
 
         contactDataModal.style.display = 'flex';
-        document.getElementById('firstNameInput').placeholder = contactFirstNameElement.textContent;
+        console.log(contactFirstNameElement.textContent);
 
         document.body.classList.add('modal-open');
+
+        document.getElementById('firstNameInput').placeholder = "test placeholder";
+
 
         submitDataBtn.removeEventListener('click', handleNewContactSubmit);  
         submitDataBtn.removeEventListener('click', handleEditContactSubmit); 
