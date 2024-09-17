@@ -282,7 +282,7 @@ function handleNewContactSubmit() {
     } else {
         addContact(firstName, lastName, phoneNum, emailAdd);
         contactDataModal.style.display = 'none';
-        ocument.getElementById('firstNameInput').placeholder = "First Name";
+        document.getElementById('firstNameInput').placeholder = "First Name";
         document.getElementById('lastNameInput').placeholder = "Last Name";
         document.getElementById('numberInput').placeholder = "Number";
         document.getElementById('emailInput').placeholder = "Email";
@@ -392,6 +392,10 @@ contactList.addEventListener('click', (event) => {
 
 exitBtn.addEventListener('click', function() {
     contactDataModal.style.display = 'none';
+    document.getElementById('firstNameInput').placeholder = "First Name";
+    document.getElementById('lastNameInput').placeholder = "Last Name";
+    document.getElementById('numberInput').placeholder = "Number";
+    document.getElementById('emailInput').placeholder = "Email";
     document.body.classList.remove('modal-open'); 
     firstNameInput.value = '';
     lastNameInput.value = ''
