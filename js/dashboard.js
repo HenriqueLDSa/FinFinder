@@ -282,6 +282,10 @@ function handleNewContactSubmit() {
     } else {
         addContact(firstName, lastName, phoneNum, emailAdd);
         contactDataModal.style.display = 'none';
+        ocument.getElementById('firstNameInput').placeholder = "First Name";
+        document.getElementById('lastNameInput').placeholder = "Last Name";
+        document.getElementById('numberInput').placeholder = "Number";
+        document.getElementById('emailInput').placeholder = "Email";
         document.body.classList.remove('modal-open');
         firstNameInput.value = '';
         lastNameInput.value = '';
@@ -345,11 +349,12 @@ contactList.addEventListener('click', (event) => {
         });
 
         contactDataModal.style.display = 'flex';
-        console.log(contactFirstNameElement.textContent);
+        document.getElementById('firstNameInput').placeholder = contactFirstNameElement.textContent;
+        document.getElementById('lastNameInput').placeholder = contactLastNameElement.textContent;
+        document.getElementById('numberInput').placeholder = contactNumberElement.textContent;
+        document.getElementById('emailInput').placeholder = contactEmailElement.textContent;
 
         document.body.classList.add('modal-open');
-
-        document.getElementById('firstNameInput').placeholder = "test placeholder";
 
 
         submitDataBtn.removeEventListener('click', handleNewContactSubmit);  
