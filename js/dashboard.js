@@ -285,7 +285,8 @@ function handleNewContactSubmit() {
         document.getElementById('firstNameInput').placeholder = "First Name";
         document.getElementById('lastNameInput').placeholder = "Last Name";
         document.getElementById('numberInput').placeholder = "Number (XXX-XXX-XXXX)";
-        document.getElementById('emailInput').placeholder = "Email (name@email.com)";
+        document.getElementById('emailInput').placeholder = "Email (name@test.com)";
+        document.getElementById(contactResult).value = "";
         document.body.classList.remove('modal-open');
         firstNameInput.value = '';
         lastNameInput.value = '';
@@ -311,6 +312,7 @@ function handleEditContactSubmit(contactID) {
     } else {
         editContact(contactID, firstName, lastName, phoneNum, emailAdd);
         contactDataModal.style.display = 'none';
+        document.getElementById(contactResult).value = "";
         document.body.classList.remove('modal-open');
         firstNameInput.value = '';
         lastNameInput.value = '';
@@ -395,7 +397,8 @@ exitBtn.addEventListener('click', function() {
     document.getElementById('firstNameInput').placeholder = "First Name";
     document.getElementById('lastNameInput').placeholder = "Last Name";
     document.getElementById('numberInput').placeholder = "Number (XXX-XXX-XXXX)";
-    document.getElementById('emailInput').placeholder = "Email (name@email.com)";
+    document.getElementById('emailInput').placeholder = "Email (name@test.com)";
+    document.getElementById(contactResult).value = "";
     document.body.classList.remove('modal-open'); 
     firstNameInput.value = '';
     lastNameInput.value = ''
