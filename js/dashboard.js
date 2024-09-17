@@ -277,15 +277,15 @@ function handleNewContactSubmit() {
         document.getElementById("contactResult").innerHTML = "Please fill out all fields.";
     }else if(emailRegex.test(emailAdd) == false){
         document.getElementById("contactResult").innerHTML = "Not an actual email address.";
-    }else if(phoneRegex.test(phoneNum)){
+    }else if(phoneRegex.test(phoneNum) == false){
         document.getElementById("contactResult").innerHTML = "Not an actual phone number.";
     } else {
         addContact(firstName, lastName, phoneNum, emailAdd);
         contactDataModal.style.display = 'none';
         document.getElementById('firstNameInput').placeholder = "First Name";
         document.getElementById('lastNameInput').placeholder = "Last Name";
-        document.getElementById('numberInput').placeholder = "Number";
-        document.getElementById('emailInput').placeholder = "Email";
+        document.getElementById('numberInput').placeholder = "Number (XXX-XXX-XXXX)";
+        document.getElementById('emailInput').placeholder = "Email (name@email.com)";
         document.body.classList.remove('modal-open');
         firstNameInput.value = '';
         lastNameInput.value = '';
@@ -299,17 +299,15 @@ function handleEditContactSubmit(contactID) {
     const lastName = lastNameInput.value;
     const phoneNum = numberInput.value;
     const emailAdd = emailInput.value;
+    var emailRegex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+    var phoneRegex = /^[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/;
 
-
-    
-    if (!firstName) {
-        alert('Please enter the first name.');
-    } else if (!lastName) {
-        alert('Please enter the last name.');
-    } else if (!phoneNum) {
-        alert('Please enter the phone number.');
-    } else if (!emailAdd) {
-        alert('Please enter the email address.');
+    if (!firstName || !lastName || !phoneNum || !emailAdd) {
+        document.getElementById("contactResult").innerHTML = "Please fill out all fields.";
+    }else if(emailRegex.test(emailAdd) == false){
+        document.getElementById("contactResult").innerHTML = "Not an actual email address.";
+    }else if(phoneRegex.test(phoneNum) == false){
+        document.getElementById("contactResult").innerHTML = "Not an actual phone number.";
     } else {
         editContact(contactID, firstName, lastName, phoneNum, emailAdd);
         contactDataModal.style.display = 'none';
@@ -396,8 +394,8 @@ exitBtn.addEventListener('click', function() {
     contactDataModal.style.display = 'none';
     document.getElementById('firstNameInput').placeholder = "First Name";
     document.getElementById('lastNameInput').placeholder = "Last Name";
-    document.getElementById('numberInput').placeholder = "Number";
-    document.getElementById('emailInput').placeholder = "Email";
+    document.getElementById('numberInput').placeholder = "Number (XXX-XXX-XXXX)";
+    document.getElementById('emailInput').placeholder = "Email (name@email.com)";
     document.body.classList.remove('modal-open'); 
     firstNameInput.value = '';
     lastNameInput.value = ''
