@@ -346,6 +346,7 @@ contactList.addEventListener('click', (event) => {
 
         contactDataModal.style.display = 'flex';
         document.body.classList.add('modal-open');
+        document.getElementsById('firstNameInput')[0].placeholder='new text for email';
 
         submitDataBtn.removeEventListener('click', handleNewContactSubmit);  
         submitDataBtn.removeEventListener('click', handleEditContactSubmit); 
