@@ -345,7 +345,9 @@ contactList.addEventListener('click', (event) => {
         });
 
         contactDataModal.style.display = 'flex';
+
         document.body.classList.add('modal-open');
+        document.getElementsById('firstNameInput').placeholder= contactFirstNameElement;
 
         submitDataBtn.removeEventListener('click', handleNewContactSubmit);  
         submitDataBtn.removeEventListener('click', handleEditContactSubmit); 
