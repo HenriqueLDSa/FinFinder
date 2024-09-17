@@ -57,13 +57,15 @@ function doRegister() {
                 let jsonObject = JSON.parse(xhr.responseText);
                 
                 //if there is an error (as defined in the .php, print it)
-                if (jsonObject.error != "") {
+                if (jsonObject.error) {
                     document.getElementById("registerResult").innerHTML = jsonObject.error;
                     return;
                 }
-
-                // Registration successful (no JSONobject error as defined in register.php)
-                document.getElementById("registerResult").innerHTML = "User registered successfully";
+                else if (jsonObject.message) //added success message in php (issue with reading "" for error)
+                {
+                     // Registration successful (no JSONobject error as defined in register.php)
+                    document.getElementById("registerResult").innerHTML = jsonObject.message;
+                }
                 
             }
         };
