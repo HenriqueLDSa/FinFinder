@@ -355,7 +355,7 @@ contactList.addEventListener('click', (event) => {
         document.getElementById('lastNameInput').placeholder = contactLastNameElement.textContent;
         document.getElementById('numberInput').placeholder = contactNumberElement.textContent;
         document.getElementById('emailInput').placeholder = contactEmailElement.textContent;
-        document.getElementById('firstNameInput').innerHTML = contactFirstNameElement.textContent;
+        document.getElementById('firstNameInput').value = contactFirstNameElement.textContent;
 
         document.body.classList.add('modal-open');
 
