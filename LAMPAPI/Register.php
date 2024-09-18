@@ -64,7 +64,7 @@ else
 		$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 		
 		//troubleshooting
-		var_dump($hashedPassword);
+		//var_dump($hashedPassword);
 		
 		// Prepare the SQL statement for inserting a new user
 		$stmt = $conn->prepare("INSERT INTO Users (FirstName, LastName, Email, Login, Password) VALUES (?, ?, ?, ?, ?)"); //? for each entry!!!
@@ -129,7 +129,7 @@ function returnWithError( $err )
 	sendResultInfoAsJson( $retValue );
 }
 
-function returnWithMessage($msg) 
+function returnWithMessage( $msg ) 
 {
 	$retValue = '{"message":"' . $msg . '"}';
 	sendResultInfoAsJson($retValue);
