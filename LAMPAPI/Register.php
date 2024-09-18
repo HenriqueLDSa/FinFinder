@@ -78,9 +78,6 @@ else
 		{
 			try 
 			{
-				//use in place of html in xhr block defined in doRegister 
-                returnWithMessage("User registered Successfully");
-
                 sendConfirmationEmail($firstName, $lastName, $email, $login, $password);
 
             } 
@@ -130,13 +127,6 @@ function returnWithError( $err )
 	
 	// Send the error message back as JSON
 	sendResultInfoAsJson( $retValue );
-}
-
-//function to return success message (since html isnt working)
-function returnWithMessage($msg)
-{
-	$retValue = '{"message":"' . $msg . '"}';
-	sendResultInfoAsJson( $retValue ); 
 }
 
 //SENDING CONFRIMATION EMAIL USING PHPMAILER

@@ -61,11 +61,9 @@ function doRegister() {
                     document.getElementById("registerResult").innerHTML = jsonObject.error;
                     return;
                 }
-                else if (jsonObject.message) //added success message in php (issue with reading "" for error)
-                {
-                     // Registration successful (no JSONobject error as defined in register.php)
-                    document.getElementById("registerResult").innerHTML = jsonObject.message;
-                }
+                // Registration successful (no JSONobject error as defined in register.php)
+                document.getElementById("registerResult").innerHTML = "Credentials have been registered";
+                
                 
             }
         };
