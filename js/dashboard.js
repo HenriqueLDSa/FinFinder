@@ -282,10 +282,6 @@ function handleNewContactSubmit() {
     } else {
         addContact(firstName, lastName, phoneNum, emailAdd);
         contactDataModal.style.display = 'none';
-        document.getElementById('firstNameInput').placeholder = "First Name";
-        document.getElementById('lastNameInput').placeholder = "Last Name";
-        document.getElementById('numberInput').placeholder = "Number (XXX-XXX-XXXX)";
-        document.getElementById('emailInput').placeholder = "Email (name@test.com)";
         document.getElementById("contactResult").innerHTML = "";
         document.body.classList.remove('modal-open');
         firstNameInput.value = '';
@@ -351,11 +347,10 @@ contactList.addEventListener('click', (event) => {
         });
 
         contactDataModal.style.display = 'flex';
-        // document.getElementById('firstNameInput').placeholder = contactFirstNameElement.textContent;
-        document.getElementById('lastNameInput').placeholder = contactLastNameElement.textContent;
-        document.getElementById('numberInput').placeholder = contactNumberElement.textContent;
-        document.getElementById('emailInput').placeholder = contactEmailElement.textContent;
         document.getElementById('firstNameInput').value = contactFirstNameElement.textContent;
+        document.getElementById('lastNameInput').value = contactLastNameElement.textContent;
+        document.getElementById('numberInput').value = contactNumberElement.textContent;
+        document.getElementById('emailInput').value = contactEmailElement.textContent;
 
         document.body.classList.add('modal-open');
 
@@ -395,10 +390,10 @@ contactList.addEventListener('click', (event) => {
 
 exitBtn.addEventListener('click', function() {
     contactDataModal.style.display = 'none';
-    document.getElementById('firstNameInput').placeholder = "First Name";
-    document.getElementById('lastNameInput').placeholder = "Last Name";
-    document.getElementById('numberInput').placeholder = "Number (XXX-XXX-XXXX)";
-    document.getElementById('emailInput').placeholder = "Email (name@test.com)";
+    document.getElementById('firstNameInput').value = "";
+    document.getElementById('lastNameInput').value = "";
+    document.getElementById('numberInput').value = "";
+    document.getElementById('emailInput').value = "";
     document.getElementById("contactResult").innerHTML = "";
     document.body.classList.remove('modal-open'); 
     firstNameInput.value = '';
