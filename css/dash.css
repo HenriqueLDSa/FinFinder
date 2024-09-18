@@ -236,6 +236,10 @@ body {
     margin-left: 2.5px;
 }
 
+#edit-icon:hover, #trash-icon:hover {
+    cursor: pointer; 
+}
+
 .modal {
     display: none; 
     position: fixed; 
