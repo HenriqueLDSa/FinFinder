@@ -72,7 +72,7 @@ else
 
         //send the new password to user via PHPMailer
         sendResetEmail($firstName, $lastName, $email, $login, $newPassword);
-        returnWithError("Email with password sent successfully"); // Indicate success
+        returnWithMessage("Email with password sent successfully"); // Indicate success
     } 
     
     else 
@@ -114,6 +114,11 @@ function returnWithError($err) {
     sendResultInfoAsJson($retValue);
 }
 
+function returnWithMessage( $msg ) 
+{
+	$retValue = '{"message":"' . $msg . '"}';
+	sendResultInfoAsJson($retValue);
+}
 
 
 //SENDING CONFRIMATION EMAIL USING PHPMAILER
