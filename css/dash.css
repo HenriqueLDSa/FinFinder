@@ -82,6 +82,7 @@ body {
 .menu-item:hover {
     background-color: rgba(255, 255, 255, 0.2); 
     color: #333;
+    cursor: pointer;
 }
 
 /* main content */
