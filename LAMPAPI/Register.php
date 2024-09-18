@@ -59,7 +59,7 @@ else
 
 	else //user does not already exist -> 
 	{
-
+		returnWithMessage("Credentials have been registered"); 
 		// Hash the password before storing it
 		$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 		
@@ -127,6 +127,12 @@ function returnWithError( $err )
 	
 	// Send the error message back as JSON
 	sendResultInfoAsJson( $retValue );
+}
+
+function returnWithMessage($msg) 
+{
+	$retValue = '{"message":"' . $msg . '"}';
+	sendResultInfoAsJson($retValue);
 }
 
 //SENDING CONFRIMATION EMAIL USING PHPMAILER
