@@ -142,6 +142,11 @@ body {
 }
 
 
+.new-user-button:hover {
+    background-color: rgba(0, 123, 255, 0.2);
+    cursor: pointer;
+}
+
 .search-grid {
     margin-top: 10px;
     display: grid;
