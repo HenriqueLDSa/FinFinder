@@ -72,7 +72,7 @@ else
 
         //send the new password to user via PHPMailer
         sendResetEmail($firstName, $lastName, $email, $login, $newPassword);
-        returnWithError(""); // Indicate success
+        returnWithError("Email with password sent successfully"); // Indicate success
     } 
     
     else 
@@ -136,8 +136,8 @@ function sendResetEmail($firstName, $lastName, $email, $login, $newPassword)
 
 		// Content
 		$mail->isHTML(true); // Set email format to HTML
-		$mail->Subject = "Team 27 Contact Search Application Account Registration";
-		$mail->Body    = "Hello $firstName, your Password has been reset.<br><br>"
+		$mail->Subject =  "Team 27 Contact Search Application Account Registration";
+		$mail->Body    =  "Hello $firstName, your Password has been reset.<br><br>"
                         . "Your credentials are:<br><br>"
                         . "Username: $login<br><br>"
                         . "Password: $newPassword"; //"." CONCATENATE PHP syntax, <br><br> newline for html 
