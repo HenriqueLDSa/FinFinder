@@ -351,10 +351,11 @@ contactList.addEventListener('click', (event) => {
         });
 
         contactDataModal.style.display = 'flex';
-        document.getElementById('firstNameInput').placeholder = contactFirstNameElement.textContent;
+        // document.getElementById('firstNameInput').placeholder = contactFirstNameElement.textContent;
         document.getElementById('lastNameInput').placeholder = contactLastNameElement.textContent;
         document.getElementById('numberInput').placeholder = contactNumberElement.textContent;
         document.getElementById('emailInput').placeholder = contactEmailElement.textContent;
+        document.getElementById('firstNameInput').innerHTML = contactFirstNameElement.textContent;
 
         document.body.classList.add('modal-open');
 
