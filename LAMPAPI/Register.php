@@ -64,7 +64,7 @@ else
 		$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 		
 		//troubleshooting
-		var_dump($hashed_password);
+		var_dump($hashedPassword);
 		
 		// Prepare the SQL statement for inserting a new user
 		$stmt = $conn->prepare("INSERT INTO Users (FirstName, LastName, Email, Login, Password) VALUES (?, ?, ?, ?, ?)"); //? for each entry!!!
@@ -80,8 +80,6 @@ else
 			{
                 sendConfirmationEmail($firstName, $lastName, $email, $login, $password);
 
-				//use in place of html in xhr block defined in doRegister 
-                returnWithMessage("User registered Successfully");
             } 
 			
 			catch (Exception $e) 
@@ -129,13 +127,6 @@ function returnWithError( $err )
 	
 	// Send the error message back as JSON
 	sendResultInfoAsJson( $retValue );
-}
-
-//function to return success message (since html isnt working)
-function returnWithMessage($msg)
-{
-	$retValue = '{"message:"' . $msg . '"}';
-	sendResultInfoAsJson( $retValue ); 
 }
 
 //SENDING CONFRIMATION EMAIL USING PHPMAILER
