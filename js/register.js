@@ -62,7 +62,7 @@ function doRegister() {
                     return;
                 }
                 // Registration successful (no JSONobject error as defined in register.php)
-                document.getElementById("registerResult").innerHTML = "Credentials have been registered";
+                document.getElementById("registerResult").innerHTML = jsonObject.message;
                 
                 
             }
