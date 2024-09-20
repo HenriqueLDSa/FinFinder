@@ -21,6 +21,7 @@ const firstNameInput = document.getElementById('firstNameInput');
 const lastNameInput = document.getElementById('lastNameInput');
 const numberInput = document.getElementById('numberInput');
 const emailInput = document.getElementById('emailInput'); 
+const searchBarInput = document.querySelector('.search-bar');
 
 let userId;
 let firstName = "";
@@ -204,6 +205,31 @@ function deleteContact(id){
     }
 }
 
+function searchContact(event){
+    const regex = /^[a-zA-Z0-9]*$/;
+    const inputValue = event.target.value;  
+
+    if (!regex.test(inputValue)) 
+        return
+
+    contactList.innerHTML = "";
+
+    userContacts.forEach(contact => {
+        if (contact.FirstName.startsWith(inputValue) || contact.LastName.startsWith(inputValue)) {
+            console.log(contact);
+            addElementToTable(contact.FirstName, contact.LastName, contact.Phone, contact.Email);
+        }    
+    });
+
+    if(inputValue.length == 0){
+        contactList.innerHTML = "";
+        userContacts.forEach(contact => {
+            if (contact.FirstName.startsWith(inputValue) || contact.LastName.startsWith(inputValue))
+                addElementToTable(contact.FirstName, contact.LastName, contact.Phone, contact.Email);  
+        });
+    }
+}
+
 function addElementToTable(firstName, lastName, phone, email){
     const newContactElement = document.createElement("div");
     newContactElement.className = "contact-item";
@@ -262,6 +288,8 @@ contactBtn.addEventListener('click', () => {
 aboutUsBtn.addEventListener('click', () => {
     window.location.href = "about.html";
 });
+
+searchBarInput.addEventListener('input', searchContact);
 
 refreshBtn.addEventListener('click', loadContacts); 
 
