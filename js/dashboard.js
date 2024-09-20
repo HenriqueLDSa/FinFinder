@@ -270,18 +270,19 @@ function handleNewContactSubmit() {
     const lastName = lastNameInput.value;
     const phoneNum = numberInput.value;
     const emailAdd = emailInput.value;
+    var emailRegex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+    var phoneRegex = /^[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/;
 
-    if (!firstName) {
-        alert('Please enter the first name.');
-    } else if (!lastName) {
-        alert('Please enter the last name.');
-    } else if (!phoneNum) {
-        alert('Please enter the phone number.');
-    } else if (!emailAdd) {
-        alert('Please enter the email address.');
+    if (!firstName || !lastName || !phoneNum || !emailAdd) {
+        document.getElementById("contactResult").innerHTML = "Please fill out all fields.";
+    }else if(emailRegex.test(emailAdd) == false){
+        document.getElementById("contactResult").innerHTML = "Not an actual email address.";
+    }else if(phoneRegex.test(phoneNum) == false){
+        document.getElementById("contactResult").innerHTML = "Not an actual phone number.";
     } else {
         addContact(firstName, lastName, phoneNum, emailAdd);
         contactDataModal.style.display = 'none';
+        document.getElementById("contactResult").innerHTML = "";
         document.body.classList.remove('modal-open');
         firstNameInput.value = '';
         lastNameInput.value = '';
@@ -295,18 +296,19 @@ function handleEditContactSubmit(contactID) {
     const lastName = lastNameInput.value;
     const phoneNum = numberInput.value;
     const emailAdd = emailInput.value;
+    var emailRegex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+    var phoneRegex = /^[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/;
 
-    if (!firstName) {
-        alert('Please enter the first name.');
-    } else if (!lastName) {
-        alert('Please enter the last name.');
-    } else if (!phoneNum) {
-        alert('Please enter the phone number.');
-    } else if (!emailAdd) {
-        alert('Please enter the email address.');
+    if (!firstName || !lastName || !phoneNum || !emailAdd) {
+        document.getElementById("contactResult").innerHTML = "Please fill out all fields.";
+    }else if(emailRegex.test(emailAdd) == false){
+        document.getElementById("contactResult").innerHTML = "Not an actual email address.";
+    }else if(phoneRegex.test(phoneNum) == false){
+        document.getElementById("contactResult").innerHTML = "Not an actual phone number.";
     } else {
         editContact(contactID, firstName, lastName, phoneNum, emailAdd);
         contactDataModal.style.display = 'none';
+        document.getElementById("contactResult").innerHTML = "";
         document.body.classList.remove('modal-open');
         firstNameInput.value = '';
         lastNameInput.value = '';
@@ -345,7 +347,13 @@ contactList.addEventListener('click', (event) => {
         });
 
         contactDataModal.style.display = 'flex';
+        document.getElementById('firstNameInput').value = contactFirstNameElement.textContent;
+        document.getElementById('lastNameInput').value = contactLastNameElement.textContent;
+        document.getElementById('numberInput').value = contactNumberElement.textContent;
+        document.getElementById('emailInput').value = contactEmailElement.textContent;
+
         document.body.classList.add('modal-open');
+
 
         submitDataBtn.removeEventListener('click', handleNewContactSubmit);  
         submitDataBtn.removeEventListener('click', handleEditContactSubmit); 
@@ -382,6 +390,11 @@ contactList.addEventListener('click', (event) => {
 
 exitBtn.addEventListener('click', function() {
     contactDataModal.style.display = 'none';
+    document.getElementById('firstNameInput').value = "";
+    document.getElementById('lastNameInput').value = "";
+    document.getElementById('numberInput').value = "";
+    document.getElementById('emailInput').value = "";
+    document.getElementById("contactResult").innerHTML = "";
     document.body.classList.remove('modal-open'); 
     firstNameInput.value = '';
     lastNameInput.value = ''

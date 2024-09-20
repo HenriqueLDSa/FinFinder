@@ -27,14 +27,14 @@ body {
 .title {
     color: antiquewhite;
     font-size: 5.5rem;
-    margin-top: 15%;
+    margin-top: 20%;
 }
 
 .action-choice {
     display: inherit;
     flex-direction: inherit;
     gap: 30px;
-    margin-top: 20%;
+    margin-top: 30%;
     white-space: nowrap;
     min-width: 10vw;
 }
@@ -47,7 +47,7 @@ body {
     font-size: 1.5em;
     color: #333;
     font-weight: 500;
-    padding-inline: 12px;
+    padding-inline: 30px;
     padding-block: 15px;
     align-items: center;
 }

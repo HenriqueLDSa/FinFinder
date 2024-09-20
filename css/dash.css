@@ -82,6 +82,7 @@ body {
 .menu-item:hover {
     background-color: rgba(255, 255, 255, 0.2); 
     color: #333;
+    cursor: pointer;
 }
 
 /* main content */
@@ -140,6 +141,11 @@ body {
     flex-shrink: 0; 
 }
 
+
+.new-user-button:hover {
+    background-color: rgba(0, 123, 255, 0.2);
+    cursor: pointer;
+}
 
 .search-grid {
     margin-top: 10px;
@@ -230,6 +236,10 @@ body {
     margin-left: 2.5px;
 }
 
+#edit-icon:hover, #trash-icon:hover {
+    cursor: pointer; 
+}
+
 .modal {
     display: none; 
     position: fixed; 
@@ -248,6 +258,12 @@ body {
     border-radius: 5px;
     text-align: center;
     box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.5);
+}
+
+.contact-result{
+    color: white;
+    font-size: 1.2rem;
+    padding: 10px;
 }
 
 .input-box input {

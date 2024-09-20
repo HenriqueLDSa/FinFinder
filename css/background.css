@@ -141,3 +141,55 @@ body {
         transform: translateX(20%);
     }
 }
+
+/* shark */
+.shark-container {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;    
+    overflow: hidden;  
+    z-index: -1;      
+}
+
+/* Shark image styling and animation */
+.shark-image {
+    position: absolute;
+    top: 0;
+    right: -100%;
+    width: 200%;  
+    height: 10vh;
+    animation: shark-scroll 100s linear infinite;
+    z-index: -1;
+    opacity: 0.3;
+    object-fit: contain;
+}
+
+/* Keyframes for horizontal movement from right to left */
+@keyframes shark-scroll {
+    0% {
+        transform: translateX(0); 
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.home-button {
+    position: fixed; /* Fixes the button's position relative to the viewport */
+    top: 10px; /* Adjust the distance from the top */
+    left: 10px; /* Adjust the distance from the left */
+}
+
+.home-button a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #004084; /* Change to your desired color */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.home-button a:hover {
+    background-color: #01254c; /* Change to your desired hover color */
+}

@@ -41,8 +41,6 @@ function doRegister() {
         return;
     }
 
-    
-
     // Create the payload with the user details
     let tmp = {firstName: firstName, lastName: lastName, email: email, login: login, password: password};
     let jsonPayload = JSON.stringify(tmp);
@@ -59,13 +57,13 @@ function doRegister() {
                 let jsonObject = JSON.parse(xhr.responseText);
                 
                 //if there is an error (as defined in the .php, print it)
-                if (jsonObject.error != "") {
+                if (jsonObject.error) {
                     document.getElementById("registerResult").innerHTML = jsonObject.error;
                     return;
                 }
-
                 // Registration successful (no JSONobject error as defined in register.php)
-                document.getElementById("registerResult").innerHTML = "User registered successfully";
+                document.getElementById("registerResult").innerHTML = jsonObject.message;
+                
                 
             }
         };

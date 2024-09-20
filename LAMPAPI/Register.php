@@ -59,16 +59,19 @@ else
 
 	else //user does not already exist -> 
 	{
-
+		returnWithMessage("Credentials have been registered"); 
 		// Hash the password before storing it
 		$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+		
+		//troubleshooting
+		//var_dump($hashedPassword);
 		
 		// Prepare the SQL statement for inserting a new user
 		$stmt = $conn->prepare("INSERT INTO Users (FirstName, LastName, Email, Login, Password) VALUES (?, ?, ?, ?, ?)"); //? for each entry!!!
 		
 		// Bind the parameters to the SQL statement
 		// 'ssss' indicates that all four parameters are strings
-		$stmt->bind_param("sssss", $firstName, $lastName, $email, $login, $password); //s for each entry!!
+		$stmt->bind_param("sssss", $firstName, $lastName, $email, $login, $hashedPassword); //s for each entry!!
 
 		// Execute the SQL statement, if executed
 		if($stmt->execute())
@@ -76,7 +79,7 @@ else
 			try 
 			{
                 sendConfirmationEmail($firstName, $lastName, $email, $login, $password);
-                returnWithError("");  // Success with no error
+
             } 
 			
 			catch (Exception $e) 
@@ -124,6 +127,12 @@ function returnWithError( $err )
 	
 	// Send the error message back as JSON
 	sendResultInfoAsJson( $retValue );
+}
+
+function returnWithMessage( $msg ) 
+{
+	$retValue = '{"message":"' . $msg . '"}';
+	sendResultInfoAsJson($retValue);
 }
 
 //SENDING CONFRIMATION EMAIL USING PHPMAILER
