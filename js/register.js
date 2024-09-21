@@ -64,21 +64,26 @@ function doRegister() {
     try {
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                let jsonObject = JSON.parse(xhr.responseText);
-                
-                if (jsonObject.error) {
-                    document.getElementById("registerResult").innerHTML = jsonObject.error;
-                    return;
+                try {
+                    let jsonObject = JSON.parse(xhr.responseText);
+                    
+                    if (jsonObject.error) {
+                        document.getElementById("registerResult").innerHTML = jsonObject.error;
+                        return;
+                    }
+        
+                    document.getElementById("registerResult").innerHTML = jsonObject.message;
+                } catch (err) {
+                    // Handle JSON parsing error (if the server returns non-JSON content)
+                    document.getElementById("registerResult").innerHTML = "Unexpected server response. Please try again.";
+                    console.error("Error parsing response: ", xhr.responseText);
                 }
-
-                document.getElementById("registerResult").innerHTML = jsonObject.message;
             }
         };
         xhr.send(jsonPayload);
     } catch (err) {
         document.getElementById("registerResult").innerHTML = err.message;
     }
-    
 }
 
 
