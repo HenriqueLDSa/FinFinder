@@ -52,7 +52,7 @@ function readCookie() {
     }
 
     if (userId < 0) {
-        window.location.href = "index.html";
+        window.location.href = "/welcome";
         return;
     }
 }
@@ -278,15 +278,15 @@ logoutBtn.addEventListener('click', () => {
 	firstName = "";
 	lastName = "";
 	document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
-	window.location.href = "index.html";
+	window.location.href = "/welcome";
 });
 
 contactBtn.addEventListener('click', () => {
-    window.location.href = "dashboard.html";
+    window.location.href = "/dashboard";
 });
 
 aboutUsBtn.addEventListener('click', () => {
-    window.location.href = "about.html";
+    window.location.href = "/about";
 });
 
 searchBarInput.addEventListener('input', searchContact);
