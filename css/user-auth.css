@@ -35,6 +35,7 @@ body {
     height: 50px;
     background: transparent;
     margin: 30px 0;
+    position: relative;
 }
 
 .input-box input {
@@ -45,9 +46,8 @@ body {
     outline: none; 
     border: 2px solid rgba(255, 255, 255, .2);
     border-radius: 40px;
-    font-size: 16;
+    font-size: 16px;
     color: #fff;
-    border-radius: 40px;
     padding: 20px 45px 20px 20px;
 }
 
@@ -61,7 +61,27 @@ body {
     transform: translate(-160%, 30%);
 }
 
-/* Hide the eye icon in Edge */
+.password-requirements {
+    display: none;
+    position: absolute;
+    top: 0; 
+    left: -300px; 
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    border-radius: 10px;
+    padding: 10px;
+    width: 280px;
+    font-size: 12px;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.password-requirements ul {
+    list-style: none;  
+    padding-left: 0;   
+    margin: 0;         
+}
+
 input[type="password"]::-ms-reveal {
     display: none;
 }
@@ -94,9 +114,9 @@ input[type="password"]::-ms-clear {
     font-size: 16px;
     color: #333;
     font-weight: 600;
-    background-color: rgba(0, 0, 0, 0.2); /* Slightly darker on hover */
+    background-color: rgba(0, 0, 0, 0.2);
     color: #333;
-    opacity: 0.9; /* Maintain slight opacity */
+    opacity: 0.9; 
 }
 
 .page-link {
@@ -110,3 +130,9 @@ input[type="password"]::-ms-clear {
     text-decoration: none;
     font-weight: 600;
 }
+
+#registerResult, #passwordResult, #loginResult {
+    text-align: center;
+    color: #FFA500;
+}
+

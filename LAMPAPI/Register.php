@@ -8,96 +8,75 @@
         exit();
     }
     
-//view errors in browser (for debugging purposes)
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-
-//Include PHPMailer classes. DO NOT INDENT THEM
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-// autoload PHPMailer
 require '/var/www/html/vendor/autoload.php';
 
 
-//decodes JSON input from HTTP request to PhP, allowing easy access to data sent by client 
 $inData = getRequestInfo();
 
-// Extract the data from the JSON input
 $firstName = $inData["firstName"];
 $lastName = $inData["lastName"];
 $email = $inData["email"];
 $login = $inData["login"];
 $password = $inData["password"];
 
-//create connection to SQL database
 $conn = new mysqli("localhost", "Main27", "Team27Poosd", "COP4331");
 
-//return error if cannot access database
 if ($conn->connect_error) 
 {
 	returnWithError( $conn->connect_error );
 } 
-
-//database accessed -> 
 else 
 {
-	//check if user already exists in database
-	$stmt = $conn->prepare("SELECT ID FROM Users WHERE Email=?");
-	$stmt->bind_param("s", $email);
-	$stmt->execute();
-	$result = $stmt->get_result();
+    $stmt = $conn->prepare("SELECT ID FROM Users WHERE Email=? OR Login=?");
+    $stmt->bind_param("ss", $email, $login);  // Bind both email and login
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-	if ($result->num_rows > 0)
-	{
-		//return error: User already exists
-		returnWithError("Credentials already exist for the email address you entered.");
-	}
+    if ($result->num_rows > 0)
+    {
+        $row = $result->fetch_assoc();
+        if ($row["Email"] === $email) {
+            returnWithError("Credentials already exist for the email address you entered");
+        } else if ($row["Login"] === $login) {
+            returnWithError("Username already taken. Please choose a different one.");
+        }
+    }
+    else 
+    {
+        returnWithMessage("Registration Successful"); 
 
-	else //user does not already exist -> 
-	{
-		returnWithMessage("Credentials have been registered"); 
-		// Hash the password before storing it
 		$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-		
-		//troubleshooting
-		//var_dump($hashedPassword);
-		
-		// Prepare the SQL statement for inserting a new user
-		$stmt = $conn->prepare("INSERT INTO Users (FirstName, LastName, Email, Login, Password) VALUES (?, ?, ?, ?, ?)"); //? for each entry!!!
-		
-		// Bind the parameters to the SQL statement
-		// 'ssss' indicates that all four parameters are strings
-		$stmt->bind_param("sssss", $firstName, $lastName, $email, $login, $hashedPassword); //s for each entry!!
+        
+        $stmt = $conn->prepare("INSERT INTO Users (FirstName, LastName, Email, Login, Password) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssss", $firstName, $lastName, $email, $login, $hashedPassword);
 
-		// Execute the SQL statement, if executed
-		if($stmt->execute())
-		{
-			try 
-			{
+        if($stmt->execute())
+        {
+            try 
+            {
                 sendConfirmationEmail($firstName, $lastName, $email, $login, $password);
-
             } 
-			
-			catch (Exception $e) 
-			{
+            catch (Exception $e) 
+            {
                 returnWithError("Email could not be sent. Mailer Error: {$e->getMessage()}");
             } 
-		}
-		
-		else
-		{
-			// If there is an error during execution, return with the error message
-			returnWithError($stmt->error);
-		}
-		
-		// Close the statement and the database connection
-		$stmt->close();
-		$conn->close();
-		}
+        }
+        else
+        {
+            returnWithError($stmt->error);
+        }
+        
+        $stmt->close();
+        $conn->close();
+    }
 }
 
 //FOR TESTING ON POSTMAN

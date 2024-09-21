@@ -21,13 +21,14 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    height: 100%;
+    height: 100vh;
 }
 
 .title {
     color: antiquewhite;
     font-size: 5.5rem;
-    margin-top: 20%;
+    margin-top: 30%;
+    flex: 1;
 }
 
 .action-choice {
@@ -37,6 +38,7 @@ body {
     margin-top: 30%;
     white-space: nowrap;
     min-width: 10vw;
+    flex: 2;
 }
 
 .action-choice button{

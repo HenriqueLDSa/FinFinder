@@ -46,8 +46,6 @@ body {
     }
 }
 
-/* 3 bubbles styling */
-
 .bubbles-container {
     position: fixed;
     width: 100vw;
@@ -142,7 +140,6 @@ body {
     }
 }
 
-/* shark */
 .shark-container {
     position: fixed;
     width: 100vw;
@@ -151,10 +148,9 @@ body {
     z-index: -1;      
 }
 
-/* Shark image styling and animation */
 .shark-image {
     position: absolute;
-    top: 0;
+    top: 80%;
     right: -100%;
     width: 200%;  
     height: 10vh;
@@ -164,7 +160,6 @@ body {
     object-fit: contain;
 }
 
-/* Keyframes for horizontal movement from right to left */
 @keyframes shark-scroll {
     0% {
         transform: translateX(0); 
@@ -175,15 +170,15 @@ body {
 }
 
 .home-button {
-    position: fixed; /* Fixes the button's position relative to the viewport */
-    top: 10px; /* Adjust the distance from the top */
-    left: 10px; /* Adjust the distance from the left */
+    position: fixed; 
+    top: 10px; 
+    left: 10px; 
 }
 
 .home-button a {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #004084; /* Change to your desired color */
+    background-color: #004084; 
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -191,5 +186,5 @@ body {
 }
 
 .home-button a:hover {
-    background-color: #01254c; /* Change to your desired hover color */
+    background-color: #01254c; 
 }

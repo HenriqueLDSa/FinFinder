@@ -36,6 +36,17 @@
         <div class="input-box">
             <input type="password" id="password" placeholder="Password" required>
             <i class='bx bxs-lock' id="togglePassword"  style="cursor: pointer"></i>
+            <div class="password-requirements">
+                <p>Password must contain:</p>
+                <ul>
+                    <li>At least 8 characters</li>
+                    <li>At least one alphabetic character</li>
+                    <li>At least one numeric character</li>
+                    <li>At least one uppercase letter</li>
+                    <li>At least one lowercase letter</li>
+                    <li>At least one special character (!@#$%^&*)</li>
+                </ul>
+            </div>
         </div>
 
         <div class="input-box">
@@ -47,7 +58,7 @@
             <button id="registerButton">Register</button>
         </div>
 
-        <div id="registerResult" class="register-result"></div> <!-- display success/error message -->
+        <div id="registerResult" class="register-result"></div> 
 
         <div class="page-link">
             <p> Already have an account? <a href="login.html">Login</a> </p>
@@ -75,6 +86,5 @@
     </div>
 
     <script src="js/register.js"></script> 
-    <!-- <script src="design.js"></script> -->
 </body>
 </html>

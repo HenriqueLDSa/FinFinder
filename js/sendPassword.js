@@ -17,7 +17,7 @@ function sendPassword() {
     let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) 
     {
-        document.getElementById("passwordResult").innerHTML = "Please enter a valid email address";
+        document.getElementById("passwordResult").innerHTML = "Invalid email address";
         return;
     }
 
@@ -44,14 +44,12 @@ function sendPassword() {
 
                 // Registration successful (no JSONobject error as defined in register.php)
                 document.getElementById("passwordResult").innerHTML = "An Email has Been Sent to You with Your Password.";
-                
             }
         };
         xhr.send(jsonPayload);
     } catch (err) {
         document.getElementById("passwordResult").innerHTML = err.message;
-    }
-    
+    }   
 }
 
 
