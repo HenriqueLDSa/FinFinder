@@ -1,1 +1,3 @@
-/vendor/   # Ignore the entire vendor directory (where PHPMailer is installed)
+/vendor/    # Ignore the entire vendor directory (where PHPMailer is installed)
+.htaccess   # Ignore the .htaccess file
+
