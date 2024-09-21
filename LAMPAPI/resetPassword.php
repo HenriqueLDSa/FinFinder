@@ -136,7 +136,7 @@ function sendResetEmail($firstName, $lastName, $email, $login, $newPassword)
         $mail->Port       = 587;              // TCP port to connect to
 
         //Recipients
-        $mail->setFrom('team27poosd@outlook.com', 'Contact Search Application');
+        $mail->setFrom('team27poosd@outlook.com', 'WaveLink');
         $mail->addAddress($email, "$firstName $lastName");
 
         // Content
