@@ -51,8 +51,6 @@ else
     }
     else 
     {
-        returnWithMessage("Registration Successful"); 
-
 		$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         
         $stmt = $conn->prepare("INSERT INTO Users (FirstName, LastName, Email, Login, Password) VALUES (?, ?, ?, ?, ?)");
