@@ -52,6 +52,12 @@ function doRegister() {
         return;
     }
 
+    const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+    if (!regexPassword.test(password)){
+        document.getElementById("registerResult").innerHTML = "Password does not meet the requirements";
+        return;
+    }
+
     let tmp = {firstName: firstName, lastName: lastName, email: email, login: login, password: password};
     let jsonPayload = JSON.stringify(tmp);
 
