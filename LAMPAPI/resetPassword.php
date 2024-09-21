@@ -125,40 +125,80 @@ function returnWithMessage( $msg )
 function sendResetEmail($firstName, $lastName, $email, $login, $newPassword)
 {
 	$mail = new PHPMailer(true);
-	try {
-		//Server settings
-		$mail->isSMTP();
-		$mail->Host       = 'smtp.office365.com';  // Specify main and backup SMTP servers
-		$mail->SMTPAuth   = true;
-		$mail->Username   = 'team27poosd@outlook.com';  // SMTP username
-		$mail->Password   = 'PoosdTeam27!';  // SMTP password
-		$mail->SMTPSecure = 'tls';            // Enable TLS encryption, `ssl` also accepted
-		$mail->Port       = 587;              // TCP port to connect to
+    try {
+        //Server settings
+        $mail->isSMTP();
+        $mail->Host       = 'smtp.office365.com';  // Specify main and backup SMTP servers
+        $mail->SMTPAuth   = true;
+        $mail->Username   = 'team27poosd@outlook.com';  // SMTP username
+        $mail->Password   = 'PoosdTeam27!';  // SMTP password
+        $mail->SMTPSecure = 'tls';            // Enable TLS encryption, `ssl` also accepted
+        $mail->Port       = 587;              // TCP port to connect to
 
-		//Recipients
-		$mail->setFrom('team27poosd@outlook.com', 'Contact Search Application');
-		$mail->addAddress($email, "$firstName $lastName");
+        //Recipients
+        $mail->setFrom('team27poosd@outlook.com', 'Contact Search Application');
+        $mail->addAddress($email, "$firstName $lastName");
 
-		// Content
-		$mail->isHTML(true); // Set email format to HTML
-		$mail->Subject =  "Team 27 Contact Search Application Account Registration";
-		$mail->Body    =  "Hello $firstName, your Password has been reset.<br><br>"
-                        . "Your credentials are:<br><br>"
-                        . "Username: $login<br><br>"
-                        . "Password: $newPassword"; //"." CONCATENATE PHP syntax, <br><br> newline for html 
+        // Content
+        $mail->isHTML(true); // Set email format to HTML
+        $mail->Subject = "Team 27 Contact Search Application Account Registration";
 
-		$mail->AltBody = "Hello $firstName, your password has been reset.\n\n"
-						. "Your credentials are - \n\n"
-						. "Username: $login\n\n"
-						. "Password: $newPassword"; // Plain text for non-HTML mail clients (emails that dont read HTML)
+        $mail->Body = "
+            <html>
+            <head>
+                <style>
+                    body { font-family: Arial, sans-serif; color: #333; }
+                    h2 { color: #0a3d91; }
+                    p { font-size: 14px; }
+                    .footer { font-size: 12px; color: #888; margin-top: 20px; }
+                </style>
+            </head>
+            <body>
+                <h2>Hello $firstName,</h2>
+                <p>Your password has been successfully reset.</p>
+                <p>Here are your account details:</p>
+                <ul>
+                    <li><strong>Username:</strong> $login</li>
+                    <li><strong>Password:</strong> $newPassword</li>
+                </ul>
+                <p>To log in, please <a href='http://team27poosd.site/login'>click here</a>.</p>
+                <p>If you did not request a password reset, please contact us immediately at <a href='mailto:team27poosd@outlook.com'>team27poosd@outlook.com</a>.</p>
 
-		$mail->send();
-	} 
-	
-	catch (Exception $e) {
-		// Handle error if email fails to send
-		returnWithError("Message could not be sent. Mailer Error: {$mail->ErrorInfo}");
-	}
+                <p>Thank you, <br> The Contact Search Application Team</p>
+                
+                <div class='footer'>
+                    <p>If you have any questions, feel free to contact our support team at <a href='mailto:team27poosd@outlook.com'>team27poosd@outlook.com</a>.</p>
+                </div>
+            </body>
+            </html>
+        ";
+
+        $mail->AltBody = "
+        Hello $firstName,
+
+        Your password has been successfully reset.
+
+        Here are your account details:
+        Username: $login
+        Password: $newPassword
+
+        To log in, please visit: http://team27poosd.site/login
+
+        If you did not request a password reset, please contact us immediately at team27poosd@outlook.com.
+
+        Thank you,
+        The Contact Search Application Team
+
+        If you have any questions, feel free to contact our support team at team27poosd@outlook.com.
+        ";
+
+        $mail->send();
+    } 
+    
+    catch (Exception $e) {
+        // Handle error if email fails to send
+        returnWithError("Message could not be sent. Mailer Error: {$mail->ErrorInfo}");
+    }
 }
 
 ?>
