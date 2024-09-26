@@ -67,6 +67,7 @@ body {
         font-size: 4rem;
     }
     .action-choice {
+        margin-top: 0;
         gap: 30px;
     }
     .action-choice button {
