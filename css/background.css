@@ -1,6 +1,6 @@
 body {
-    background: linear-gradient(270deg, #0a3d91, #1e5bbf, #3371cf);
-    background-size: 300% 300%;
+    background: linear-gradient(270deg, #0a3d91, #1e5bbf, #3778d9, #5b97f1);
+    background-size: 400% 400%;
     animation: gradientAnimation 5s ease infinite;
     overflow-x: hidden;
 }
@@ -33,18 +33,17 @@ body {
     bottom: 0;
     width: 200%;
     height: 50vh;
-    animation: wave-scroll 7s infinite ease-in-out alternate;
+    animation: wave-scroll 20s linear infinite;
     z-index: -1;
     opacity: 0.7;
-
 }
 
 @keyframes wave-scroll {
-    0%{
-        translate: 0 0;
+    0% {
+        transform: translateX(0);
     }
-    100%{
-        translate: -50% 0;
+    100% {
+        transform: translateX(-50%);
     }
 }
 
@@ -56,38 +55,64 @@ body {
     z-index: -1;      
 }
 
-.bubbles-container img {
+.bubbles-image {
     position: absolute;
-    bottom: -10%;
+    left: 5%;
+    bottom: 0;
+    width: 12%;
+    height: 12%;
+    animation: move-up 15s linear infinite;
     z-index: -1;
     opacity: 0.3;
     object-fit: contain;
-    width: 20vw;
-}
-
-.bubbles-image {
-    left: 5%;
-    animation: move-up 15s linear infinite;
 }
 
 .one-bubble-image {
+    position: absolute;
     left: 18%;
+    bottom: 0;
+    width: 12%;
+    height: 12%;
     animation: move-up-fast 10s linear infinite;
+    z-index: -1;
+    opacity: 0.3;
+    object-fit: contain;
 }
 
 .bubbles-image-2 {
+    position: absolute;
     left: 44%;
+    bottom: 0;
+    width: 12%;
+    height: 12%;
     animation: move-up 12s linear infinite;
+    z-index: -1;
+    opacity: 0.3;
+    object-fit: contain;
 }
 
 .one-bubble-image-2 {
+    position: absolute;
     left: 70%;
+    bottom: 0;
+    width: 12%;
+    height: 12%;
     animation: move-up-fast 8s linear infinite;
+    z-index: -1;
+    opacity: 0.3;
+    object-fit: contain;
 }
 
 .bubbles-image-3 {
+    position: absolute;
     left: 86%;
+    bottom: 0;
+    width: 12%;
+    height: 12%;
     animation: move-up 10s linear infinite;
+    z-index: -1;
+    opacity: 0.3;
+    object-fit: contain;
 }
 
 @keyframes move-up {
@@ -143,4 +168,24 @@ body {
     100% {
         transform: translateX(-100%);
     }
+}
+
+.home-button {
+    position: fixed; 
+    top: 10px; 
+    left: 10px; 
+}
+
+.home-button a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #004084; 
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.home-button a:hover {
+    background-color: #01254c; 
 }
