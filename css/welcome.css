@@ -22,7 +22,7 @@ body {
     justify-content: flex-start;
     align-items: center;
     height: 100vh;
-}   
+}
 
 .title {
     color: antiquewhite;
@@ -57,6 +57,7 @@ body {
 .action-choice button:hover {
     cursor: pointer;
     opacity: 0.8; 
+<<<<<<< HEAD
 }
 
 @media screen and (max-width: 450px) and (max-height: 950px){
@@ -73,4 +74,6 @@ body {
         font-size: 1.4em;
         padding-inline: 20px;
     }
+=======
+>>>>>>> parent of b1e4b9a (starting to make it mobile friendly)
 }
