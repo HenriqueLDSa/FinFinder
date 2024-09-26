@@ -68,7 +68,6 @@ body {
     }
     .action-choice {
         gap: 30px;
-        margin-top: 0vh;
     }
     .action-choice button {
         font-size: 1.4em;
