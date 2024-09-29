@@ -11,11 +11,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    height: 100vh;
+    flex-direction: column;
 }
 
 .wrapper {
-    width: 420px;
+    width: fit-content;
+    height: fit-content;
+    overflow-y: auto;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, .2);
     color: #fff;
@@ -136,3 +139,14 @@ input[type="password"]::-ms-clear {
     color: #FFA500;
 }
 
+@media screen and (max-width: 767px) {
+     
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px){
+    
+}
+
+@media only screen and (min-width: 1025px) {
+    
+}
