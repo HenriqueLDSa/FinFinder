@@ -18,7 +18,7 @@ body {
 .wrapper {
     width: fit-content;
     height: fit-content;
-    overflow-y: auto;
+    overflow: visible;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, .2);
     color: #fff;
@@ -75,7 +75,7 @@ body {
     padding: 10px;
     width: 280px;
     font-size: 12px;
-    z-index: 1000;
+    z-index: 2;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
